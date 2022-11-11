@@ -19,7 +19,8 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="/dashboard">
-            <i class="fas fa-tasks"></i>
+            {{-- <i class="fas fa-tasks"></i> --}}
+            <i class="fas fa-th-large"></i>
             <span>Dashboard</span></a>
     </li>
 
@@ -40,33 +41,41 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/category">
-            <i class="fas fa-th-large"></i>
-            <span>Kategori</span></a>
-    </li>
-    <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/product">
+    <li class="nav-item {{ Request::is('dashboard/penduduk*') ? 'active' : '' }}">
+        <a class="nav-link pb-0" href="/dashboard/penduduk">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Produk</span></a>
+            <span>Data Penduduk</span></a>
+    </li>
+    <li class="nav-item {{ Request::is('dashboard/kepala*') ? 'active' : '' }}">
+        <a class="nav-link pb-0" href="/dashboard/kepala">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Keluarga</span></a>
     </li>
     <li class="nav-item {{ Request::is('admin/pembelian*') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/pembelian">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Pembelian</span></a>
+        <a class="nav-link pb-0" href="/admin/pembelian">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Kelahiran</span></a>
     </li>
-
+    <li class="nav-item {{ Request::is('admin/pembelian*') ? 'active' : '' }}">
+        <a class="nav-link pb-0" href="/admin/pembelian">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Pendatang</span></a>
+    </li>
     <!-- Nav Item - Tables -->
     <li class="nav-item {{ Request::is('admin/pelanggan*') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/pelanggan">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Pelanggan</span></a>
+        <a class="nav-link pb-0" href="/admin/pelanggan">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Pindah</span></a>
     </li>
-
-    <hr class="sidebar-divider">
+    <li class="nav-item {{ Request::is('admin/pelanggan*') ? 'active' : '' }}">
+        <a class="nav-link pb-0" href="/admin/pelanggan">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Kematian</span></a>
+    </li>
+    <hr class="sidebar-divider mt-3">
     <li class="nav-item {{ Request::is('admin/laporan*') ? 'active' : '' }}">
         <a class="nav-link" href="/admin/laporan">
-            <i class="fas fa-fw fa-file"></i>
+            <i class="fas fa-fw fa-folder"></i>
             <span>Laporan Pembelian</span></a>
     </li>
 
@@ -76,7 +85,8 @@
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" type="submit" data-toggle="modal" data-target="#logoutModal">
-            <i class="fas fa-fw fa-sign-out-alt"></i>
+            {{-- <i class="fas fa-fw fa-sign-out-alt"></i> --}}
+            <i class="fas fa-power-off"></i>
             <span>Logout</span></a>
     </li>
 

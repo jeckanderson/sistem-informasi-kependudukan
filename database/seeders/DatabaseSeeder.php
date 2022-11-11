@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kepala;
+use App\Models\Penduduk;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,5 +38,27 @@ class DatabaseSeeder extends Seeder
         foreach ($user as $key => $value) {
             User::create($value);
         }
+
+        Kepala::create([
+            'nomor_kk' => 1234567891012131,
+            'nama_kecamatan' => 'Teluk Mutiara',
+            'nama_kelurahan' => 'Wilaya Timur',
+            'nama_lingkungan' => 'linkungan 1',
+            'kode_rw' => 001,
+            'kode_rt' => 002,
+        ]);
+
+        Penduduk::create([
+            'nik' => 1234567890123456,
+            'nomor_kk' => 1234567891012131,
+            'nama_lengkap' => 'Jeck Risen',
+            'jender' => 'Laki-laki',
+            'status_nikah' => 'Lajang',
+            'relasi' => 'Suami',
+            'tanggal_lahir' => Carbon::parse('02-10-2022'),
+            'agama' => 'Kristen Protestan',
+            'pendidikan' => 'SD',
+            'pekerjaan' => 'Programer',
+        ]);
     }
 }

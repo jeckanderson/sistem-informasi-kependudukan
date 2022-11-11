@@ -45,12 +45,17 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> --}}
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('vendor/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('vendor/js/sb-admin-2.min.js') }}"></script>
-
+    {{-- sweetalert --}}
+    <script src="{{ asset('assets/js/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    {{-- script Style --}}
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 </html>

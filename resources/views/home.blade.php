@@ -104,6 +104,21 @@
                             <div class="calendar" data-role="calendar" data-start-mode="month"></div>
                         </div>
                         <h6>Times:</h6>
+                        <div class="card bg-success text-center d-block py-3">
+                            <div class="align-items-center">
+                                <div id="clock" class="fs-1"></div>
+                            </div>
+                        </div>
+                        {{-- <script>
+                            setInterval(() => {
+                                let date = new Date()
+                                let clock = document.getElementById('clock')
+                                clock.innerHTML =
+                                    date.getHours()+":"+
+                                    date.getMinutes()+":"+
+                                    date.getSeconds()
+                            }, 1000);
+                        </script> --}}
                         {{-- <div class="times" id="datepicker" data-role="times" data-style-background="bg-red" data-style-foreground="fg-white" data-style-divider="fg-white" style="font-size: 30px"></div> --}}
                     </div>
                     
