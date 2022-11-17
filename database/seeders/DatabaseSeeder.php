@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kelahiran;
 use App\Models\Kepala;
 use App\Models\Penduduk;
 use App\Models\User;
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
 
         Kepala::create([
             'nomor_kk' => 1234567891012131,
+            'no_telpon' => '085200738097',
             'nama_kecamatan' => 'Teluk Mutiara',
             'nama_kelurahan' => 'Wilaya Timur',
             'nama_lingkungan' => 'linkungan 1',
@@ -48,17 +50,54 @@ class DatabaseSeeder extends Seeder
             'kode_rt' => 002,
         ]);
 
-        Penduduk::create([
-            'nik' => 1234567890123456,
-            'nomor_kk' => 1234567891012131,
-            'nama_lengkap' => 'Jeck Risen',
+        $penduduk = [
+            [
+                'nik' => 1234567890123456,
+                'nomor_kk' => 1234567891012131,
+                'nama_lengkap' => 'Jeck Risen',
+                'jender' => 'Laki-laki',
+                'status_nikah' => 'Lajang',
+                'relasi' => 'Suami',
+                'tanggal_lahir' => Carbon::parse('02-10-2022'),
+                'agama' => 'Kristen Protestan',
+                'pendidikan' => 'SD',
+                'pekerjaan' => 'Programer',
+            ],
+            [
+                'nik' => 3534567890123454,
+                'nomor_kk' => 1234567891012131,
+                'nama_lengkap' => 'Jeck Risen',
+                'jender' => 'Laki-laki',
+                'status_nikah' => 'Lajang',
+                'relasi' => 'Suami',
+                'tanggal_lahir' => Carbon::parse('02-10-2022'),
+                'agama' => 'Kristen Protestan',
+                'pendidikan' => 'SD',
+                'pekerjaan' => 'Programer',
+            ]
+        ];
+        foreach ($penduduk as $key => $value) {
+            Penduduk::create($value);
+        }
+
+
+        Kelahiran::create([
+            'id_kelahiran' => '021',
+            'nomor_kk' => '2852007380974321',
+            'no_akte' => '431245',
+            'nama' => 'Jeck',
             'jender' => 'Laki-laki',
-            'status_nikah' => 'Lajang',
-            'relasi' => 'Suami',
-            'tanggal_lahir' => Carbon::parse('02-10-2022'),
-            'agama' => 'Kristen Protestan',
-            'pendidikan' => 'SD',
-            'pekerjaan' => 'Programer',
+            'berat' => '10 kg',
+            'tempat_bersalin' => 'Rumah Sakit',
+            'penolong_lahir' => 'Dokter',
+            'hari_lahir' => 'Selasa',
+            'TTL' => 'Surabaya, 01-10-2001',
+            'tahun_pendataan' => '2001',
+            'nama_ayah' => 'cek1',
+            'nama_ibu' => 'cek2',
+            'nama_ibu' => 'cek2',
+            'lingkungan' => 'lingkungan 1',
+            'tgl_pendataan' => '01-10-2001',
         ]);
     }
 }

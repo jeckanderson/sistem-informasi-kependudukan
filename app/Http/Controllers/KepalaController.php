@@ -7,6 +7,8 @@ use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function GuzzleHttp\Promise\queue;
+
 class KepalaController extends Controller
 {
     /**
@@ -16,6 +18,8 @@ class KepalaController extends Controller
      */
     public function index()
     {
+        // $data = Kepala::latest()->paginate(6)->withQueryString();
+        // return $data;
         return view('dashboard.kepala.index', [
             'title' => 'Data Kepala Keluarga',
             'data' => Kepala::latest()->paginate(6)->withQueryString(),
@@ -29,9 +33,9 @@ class KepalaController extends Controller
      */
     public function create()
     {
-        // return view('dashboard.kepala.create', [
-        //     'title' => 'Tambah KK'
-        // ]);
+        return view('dashboard.kepala.create', [
+            'title' => 'Tambah KK'
+        ]);
     }
 
     /**
@@ -44,8 +48,8 @@ class KepalaController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'nomor_kk' => 'required|max:16',
-                'no_telpon' => 'required',
+                'nomor_kk' => 'required|max:16|unique:kepalas',
+                'no_telpon' => 'required|unique:kepalas',
                 'nama_kecamatan' => 'required',
                 'nama_kelurahan' => 'required',
                 'nama_lingkungan' => 'required',
@@ -65,7 +69,7 @@ class KepalaController extends Controller
 
         Kepala::create($validatedData);
 
-        return redirect('/dashboard/kepala')->with('success', 'Data Kepala Keluarga diTambahkan!');
+        return redirect('/dashboard/kepala')->with('success', 'Data Kepala Keluarga di Tambahkan!');
     }
 
     /**
@@ -76,13 +80,14 @@ class KepalaController extends Controller
      */
     public function show(Kepala $kepala)
     {
+        // $allData = [];
         $data = DB::table('kepalas')
             ->join('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
             ->where('penduduks.nomor_kk', '=', $kepala->nomor_kk)
             ->get();
-
-        // $data1 = DB::table("SELECT nama_lengkap FROM penduduks WHERE relasi= 'Suami'");
-        // var_dump($data1); die;
+        // foreach ($data as $dat) {
+        //     $allData[] = $dat;
+        // }
 
         return view('dashboard.kepala.show', [
             'title' => 'Detail Anggota Keluarga',
@@ -97,10 +102,14 @@ class KepalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kepala $kepala)
     {
-        $data = Kepala::find($id);
-        return json_encode($data);
+        // $data = Kepala::find($id);
+        // return json_encode($data);
+        return view('dashboard.kepala.edit', [
+            'title' => 'Edit Data KK',
+            'item' => $kepala
+        ]);
     }
 
     /**
@@ -110,7 +119,7 @@ class KepalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kepala $kepala)
     {
         $validatedData = $request->validate(
             [
@@ -133,7 +142,7 @@ class KepalaController extends Controller
             ]
         );
 
-        Kepala::where('id', $id)->update($validatedData);
+        Kepala::where('nomor_kk', $kepala->nomor_kk)->update($validatedData);
 
         return redirect('/dashboard/kepala')->with('success', 'Data Kepala Keluarga diUpdated!');
     }
@@ -161,10 +170,9 @@ class KepalaController extends Controller
 
     public function insert(Request $request)
     {
-        // return $request; 
         $validatedData = $request->validate([
-            'nik' => 'required|max:16',
-            'nomor_kk' => 'required|max:16',
+            'nik' => 'required|min:16|unique:penduduks',
+            'nomor_kk' => 'required|min:16',
             'nama_lengkap' => 'required',
             'jender' => 'required',
             'status_nikah' => 'required',
@@ -181,10 +189,35 @@ class KepalaController extends Controller
     }
 
 
-    public function ubah(Request $request, $id)
+    public function ubah(Request $request, $nik, Penduduk $penduduk)
     {
-        // $data = Kepala::find($id);
-        // return response()->json($data);
-        echo "cek";
+        // return $nik;
+
+        return view('dashboard.kepala.ubah', [
+            'title' => 'Edit Data Anggota Keluarga',
+            'data_ak' => Penduduk::all(),
+            'data' => $nik,
+        ]);
+    }
+
+
+    public function updateak(Request $request, Penduduk $penduduk)
+    {
+        $validatedData = $request->validate([
+            'nik' => 'required|min:16',
+            'nomor_kk' => 'required|min:16',
+            'nama_lengkap' => 'required',
+            'jender' => 'required',
+            'status_nikah' => 'required',
+            'relasi' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'pendidikan' => 'required',
+            'pekerjaan' => 'required',
+        ]);
+
+        Penduduk::where('nomor_kk', $penduduk->nomor_kk)->update($validatedData);
+
+        return redirect('/dashboard/kepala')->with('success', 'Data Anggota Keluarga diTambahkan!');
     }
 }

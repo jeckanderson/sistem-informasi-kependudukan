@@ -33,9 +33,13 @@ class PendudukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($no_kk)
     {
-        //
+        // return $no_kk;
+        // return view('dashboard.penduduk.create', [
+        //     'title' => 'Tambah Anggota Keluarga',
+        //     'no_kk' => $no_kk
+        // ]);
     }
 
     /**
@@ -46,7 +50,22 @@ class PendudukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nik' => 'required|min:16|unique:penduduks',
+            'nomor_kk' => 'required|min:16',
+            'nama_lengkap' => 'required',
+            'jender' => 'required',
+            'status_nikah' => 'required',
+            'relasi' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'pendidikan' => 'required',
+            'pekerjaan' => 'required',
+        ]);
+
+        Penduduk::create($validatedData);
+
+        return redirect('/dashboard/kepala')->with('success', 'Data Anggota Keluarga diTambahkan!');
     }
 
     /**
@@ -66,9 +85,13 @@ class PendudukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Penduduk $penduduk)
     {
-        //
+        return view('dashboard.penduduk.edit', [
+            'title' => 'Edit Data Anggota Keluarga',
+            'data_ak' => Penduduk::all(),
+            'data' => $penduduk,
+        ]);
     }
 
     /**
@@ -78,9 +101,31 @@ class PendudukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Penduduk $penduduk)
     {
-        //
+        // return $request;
+        $validatedData = $request->validate([
+            'nik' => 'required|min:16',
+            'nomor_kk' => 'required|min:16',
+            'nama_lengkap' => 'required',
+            'jender' => 'required',
+            'status_nikah' => 'required',
+            'relasi' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'pendidikan' => 'required',
+            'pekerjaan' => 'required',
+        ]);
+        // if ($request->nik !== $penduduk->nik) {
+        //     $rules['nik'] = 'required|min:16|unique:penduduks';
+        // } else {
+        //     $rules['nik'] = 'required|min:16';
+        // }
+        // $validatedData = $request->validate($rules);
+        Penduduk::where('nik', $penduduk->nik)->update($validatedData);
+
+        return redirect('/dashboard/penduduk')->with('success', 'Data Anggota Keluarga di Ubah!');
+        // return redirect()->route('users.index');
     }
 
     /**
@@ -89,8 +134,9 @@ class PendudukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Penduduk $penduduk)
     {
-        //
+        Penduduk::destroy($penduduk->nik);
+        return redirect('/dashboard/kepala/show')->with('success', 'data anggota keluarga berhasil di hapus');
     }
 }

@@ -10,9 +10,10 @@ class Kepala extends Model
     use HasFactory;
     protected $primaryKey = 'nomor_kk';
     // protected $primaryKey = 'id_kepala';
-    
+
     protected $fillable = [
         'nomor_kk',
+        'no_telpon',
         'nama_kecamatan',
         'nama_kelurahan',
         'nama_lingkungan',

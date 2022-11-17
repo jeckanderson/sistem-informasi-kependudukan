@@ -2,8 +2,15 @@
 
 @section('container')
     <div class="row">
-        <div class="col-md-12 text-center">
-            <a href="/dashboard/user/create" class="btn btn-success">User {{ $users->count() }}</a>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>User Access
+                        {{--tambahDataKepala data-bs-toggle="modal" data-bs-target="#formModal" --}}
+                        <a href="/dashboard/user/create" class="btn btn-sm btn-primary float-end rounded-pill"><i class="fas fa-plus-circle"></i> User {{ $users->count() }}</a>
+                    </h5>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -14,10 +21,9 @@
     @endif
 
     <div class="row">
-        <div class="col-md-12">
-            <h4 class="border-bottom mb-3">User Akses</h4>
-            <table class="table">
-                <thead>
+        <div class="col-md-12 mt-3">
+            <table class="table table-bordered bg-white">
+                <thead class="text-white" style="font-size: 14px; background: #075985;">
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Username</th>
@@ -35,7 +41,7 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->name }}</td>
                             <td>
-                                <a href="/dashboard/user/{{ $item->id }}/edit" class="badge bg-primary text-white">Update</a>
+                                <a href="/dashboard/user/{{ $item->id }}/edit" class="badge bg-warning text-white">Update</a>
                                 <form action="/dashboard/user/{{ $item->id }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('delete')

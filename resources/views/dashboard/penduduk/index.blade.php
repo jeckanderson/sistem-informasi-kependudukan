@@ -2,23 +2,24 @@
 
 @section('container')
     <div class="row mt-3">
-        <div class="col-md-6">
-            <h4>Data Jumlah Penduduk</h4>
-        </div>
-        <div class="col-md-6">
-            <a href="/dashboard/penduduk/create"><i class="far fa-copy"></i> Cetak {{ $penduduk->count() }}</a>
-        </div>
-    </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6"><h5>Jumlah Data Penduduk ({{ $penduduk->count() }})</h5></div>
+                        {{--tambahDataKepala data-bs-toggle="modal" data-bs-target="#formModal" --}}
+                        <div class="col-md-6"><a href="/dashboard/penduduk/create" class="text-center"><i class="far fa-copy fs-4"></i></a></div>
+                    </div>
+                </div>
+            </div>
+                
+            @if(session('success'))
+                <div class="alert alert-success mt-3" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-    @if(session('success'))
-        <div class="alert alert-success mt-3" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="row">
-        <div class="col-md-12 mt-3">
-            <table class="table bg-white table-responsive" style="font-size: 14px">
+            <table class="table bg-white table-responsive table-bordered mt-2" style="font-size: 14px">
                 <thead class="text-white" style="background: #075985">
                     <tr>
                         <th scope="col">No</th>
@@ -64,6 +65,28 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="card-footer border">
+                <div class="d-flex">
+                    <div class="col-lg-6">
+                        <div>
+                            Showing
+                            {{-- {{ $penduduk->firstItem() }} --}}
+                            to
+                            {{-- {{ $penduduk->lastItem() }} --}}
+                            of
+                            {{-- {{ $penduduk->total() }} --}}
+                            entries
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-end">
+                        <div>
+                            {{-- {{ $data->links() }} --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 @endsection

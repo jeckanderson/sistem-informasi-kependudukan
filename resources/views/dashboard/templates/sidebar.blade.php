@@ -1,11 +1,12 @@
 <!-- Sidebar -->
 {{-- bg-gradient-secondary --}}
-<ul class="navbar-nav sidebar bg-gradient-primary sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar bg-gradient-success sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-th-large"></i>
+        <div class="sidebar-brand-icon">
+            {{-- rotate-n-15 --}}
+            <i class="fas fa-poll"></i>
         </div>
         <div class="sidebar-brand-text mx-3">App SIK</div>
     </a>
@@ -40,35 +41,35 @@
         Master Data
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Pages Collapse Menu pb-0-->
     <li class="nav-item {{ Request::is('dashboard/penduduk*') ? 'active' : '' }}">
-        <a class="nav-link pb-0" href="/dashboard/penduduk">
+        <a class="nav-link" href="/dashboard/penduduk">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Penduduk</span></a>
     </li>
     <li class="nav-item {{ Request::is('dashboard/kepala*') ? 'active' : '' }}">
-        <a class="nav-link pb-0" href="/dashboard/kepala">
+        <a class="nav-link" href="/dashboard/kepala">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Keluarga</span></a>
     </li>
-    <li class="nav-item {{ Request::is('admin/pembelian*') ? 'active' : '' }}">
-        <a class="nav-link pb-0" href="/admin/pembelian">
+    <li class="nav-item {{ Request::is('dashboard/kelahiran*') ? 'active' : '' }}">
+        <a class="nav-link" href="/dashboard/kelahiran">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Kelahiran</span></a>
     </li>
     <li class="nav-item {{ Request::is('admin/pembelian*') ? 'active' : '' }}">
-        <a class="nav-link pb-0" href="/admin/pembelian">
+        <a class="nav-link" href="/admin/pembelian">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pendatang</span></a>
     </li>
     <!-- Nav Item - Tables -->
     <li class="nav-item {{ Request::is('admin/pelanggan*') ? 'active' : '' }}">
-        <a class="nav-link pb-0" href="/admin/pelanggan">
+        <a class="nav-link" href="/admin/pelanggan">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pindah</span></a>
     </li>
     <li class="nav-item {{ Request::is('admin/pelanggan*') ? 'active' : '' }}">
-        <a class="nav-link pb-0" href="/admin/pelanggan">
+        <a class="nav-link" href="/admin/pelanggan">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Kematian</span></a>
     </li>

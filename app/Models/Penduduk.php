@@ -11,7 +11,7 @@ class Penduduk extends Model
 
     protected $primaryKey = 'nik';
     protected $foreignKey = 'nomor_kk';
-    
+
     protected $fillable = [
         'nik',
         'nomor_kk',
