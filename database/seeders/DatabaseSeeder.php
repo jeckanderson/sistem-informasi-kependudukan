@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
 
 
         Kelahiran::create([
-            'id_kelahiran' => '021',
+            'id_kelahiran' => '0001',
             'nomor_kk' => '2852007380974321',
             'no_akte' => '431245',
             'nama' => 'Jeck',

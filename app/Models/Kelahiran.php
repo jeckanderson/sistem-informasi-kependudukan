@@ -12,6 +12,7 @@ class Kelahiran extends Model
     protected $primaryKey = 'id_kelahiran';
 
     protected $fillable = [
+        'id_kelahiran',
         'nomor_kk',
         'no_telpon',
         'no_akte',

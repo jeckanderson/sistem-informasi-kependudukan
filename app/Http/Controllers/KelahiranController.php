@@ -13,11 +13,17 @@ class KelahiranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('dashboard.kelahiran.index', [
             'title' => 'Data Kelahiran',
             'data' => Kelahiran::all(),
+            // 'data' => Kelahiran::latest()->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -31,19 +37,22 @@ class KelahiranController extends Controller
         $tgl_pendataan = gmdate('d-m-Y');
         $tahun_pendataan = gmdate('Y');
 
-        $noauto = DB::select("SELECT max(id_kelahiran) as max_code FROM kelahirans");
-        $data = count($noauto);
-        $code = $data['max_code'];
-        $urutan = (int)substr($code, 1, 3);
-        $urutan++;
-        $huruf = "L";
-        $kd_kat = $huruf . sprintf("%03s", $urutan);
+        // $noauto = DB::table('kelahirans')->select(DB::raw('MAX(RIGHT(id_kelahiran,3)) as kode'));
+        // $code = "";
+        // if ($noauto->count() > 0) {
+        //     foreach ($noauto->get() as $no) {
+        //         $tmp = ((int)$no->kode) + 1;
+        //         $code = sprintf("%04s", $tmp);
+        //     }
+        // } else {
+        //     $code = "0001";
+        // }
 
         return view('dashboard.kelahiran.create', [
             'title' => 'Tambah Data Kelahiran',
             'tgl_pendataan' => $tgl_pendataan,
             'tahun_pendataan' => $tahun_pendataan,
-            'noautoo' => $kd_kat,
+            // 'noautoo' => $code,
         ]);
     }
 
@@ -55,7 +64,45 @@ class KelahiranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'id_kelahiran' => 'required',
+                'nomor_kk' => 'required|max:16',
+                'no_akte' => 'required|unique:kelahirans',
+                'nama' => 'required',
+                'jender' => 'required',
+                'berat' => 'required',
+                'tempat_bersalin' => 'required',
+                'penolong_lahir' => 'required',
+                'hari_lahir' => 'required',
+                'TTL' => 'required',
+                'tahun_pendataan' => 'required',
+                'nama_ayah' => 'required',
+                'nama_ibu' => 'required',
+                'lingkungan' => 'required',
+                'tgl_pendataan' => 'required',
+            ],
+            [
+                'nomor_kk.required' => 'nomor kk tidak boleh kosong',
+                'no_akte.required' => 'nomor akte tidak boleh kosong',
+                'nama.required' => 'nama tidak boleh kosong',
+                'jender.required' => 'jender tidak boleh kosong',
+                'berat.required' => 'berat tidak boleh kosong',
+                'tempat_bersalin.required' => 'tempat bersaling tidak boleh kosong',
+                'penolong_lahir.required' => 'penolong lahir tidak boleh kosong',
+                'hari_lahir.required' => 'hari lahir tidak boleh kosong',
+                'TTL.required' => 'tempat tanggal lahir tidak boleh kosong',
+                'tahun_pendataan.required' => 'tahun pendataan tidak boleh kosong',
+                'nama_ayah.required' => 'nama ayah tidak boleh kosong',
+                'nama_ibu.required' => 'nama ibu tidak boleh kosong',
+                'lingkungan.required' => 'lingkugan tidak boleh kosong',
+                'tgl_pendataan.required' => 'tanggal pendataan tidak boleh kosong',
+            ]
+        );
+
+        Kelahiran::create($validatedData);
+
+        return redirect('/dashboard/kelahiran')->with('success', 'Data Kelahiran di Tambahkan!');
     }
 
     /**

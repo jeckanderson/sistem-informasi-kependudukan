@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="row mt-3">
-        <div class="col-md-12">
+        <div class="col-md-12 mb-5">
             <div class="card">
                 <div class="card-header">
                     <h5>Data Kelahiran
@@ -73,25 +73,23 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="card-footer border">
-                <div class="d-flex">
-                    <div class="col-lg-6">
-                        <div>
-                            Showing
-                            {{-- {{ $data->firstItem() }} --}}
-                            to
-                            {{-- {{ $data->lastItem() }} --}}
-                            of
-                            {{-- {{ $data->total() }} --}}
-                            entries
-                        </div>
-                    </div>
-                    <div class="col-lg-6 d-flex justify-content-end">
-                        <div>
-                            {{-- {{ $data->links() }} --}}
-                        </div>
+            <div class="card-footer border d-flex">
+                <div class="col-lg-6">
+                    <div>
+                        Showing
+                        {{-- {{ $data->firstItem() }} --}}
+                        to
+                        {{-- {{ $data->lastItem() }} --}}
+                        of
+                        {{-- {{ $data->total() }} --}}
+                        entries
                     </div>
                 </div>
+                {{-- <div class="col-lg-6 d-flex justify-content-end">
+                    <div>
+                        {{ $data->links() }}
+                    </div>
+                </div> --}}
             </div>
         </div>
     </div>

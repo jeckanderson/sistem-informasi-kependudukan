@@ -5,21 +5,21 @@
     <div class="col-lg-12 mb-5">
         <div class="card">
             <div class="card-header text-white bg-primary">
-                <h6>Ubah Data Kelahiran</h6>
-                {{-- <i class="fas fa-plus-circle"></i> --}}
+                <h6><i class="fas fa-plus-circle"></i> Tambah Data Kelahiran</h6>
             </div>
             <div class="card-body">
                 <form action="/dashboard/kelahiran" method="post">
                     @csrf
+                    @method('put')
                     <div class="row">
                         <div class="col-md-6">
+                            {{-- <div class="mb-3">
+                                <label for="id_kelahiran" class="form-label text-danger">Kode Kelahiran</label>
+                                <input type="text" class="form-control" name="id_kelahiran" id="id_kelahiran" value="{{ $noautoo }}" readonly>
+                            </div> --}}
                             <div class="mb-3">
-                                <label for="nomor_kk" class="form-label">Kode Kelahiran</label>
-                                <input type="text" class="form-control" name="nomor_kk" id="nomor_kk" value="021" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="no_akte" class="form-label">Nomor Akte Kelahiran</label>
-                                <input type="text" class="form-control  @error('no_akte') is-invalid @enderror" name="no_akte" id="no_akte" value="{{ old('no_akte', $kelahiran->no_akte) }}" required>
+                                <label for="no_akte" class="form-label text-danger">Nomor Akte Kelahiran</label>
+                                <input type="text" class="form-control  @error('no_akte') is-invalid @enderror" name="no_akte" id="no_akte" value="{{ old('no_akte') }}" required>
                                 @error('no_akte')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -27,17 +27,17 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="nama_kecamatan" class="form-label">Nama Bayi</label>
-                                <input type="text" class="form-control @error('nama_kecamatan') is-invalid @enderror" name="nama_kecamatan" id="nama_kecamatan" value="{{ old('nama_kecamatan') }}" required>
-                                @error('nama_kecamatan')
+                                <label for="nama" class="form-label text-danger">Nama Bayi</label>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ old('nama') }}" required>
+                                @error('nama')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="nomor_kk" class="form-label">Nomor KK</label>
-                                <input type="text" class="form-control  @error('nomor_kk') is-invalid @enderror" name="nomor_kk" id="nomor_kk" value="{{ old('nomor_kk') }}" required>
+                                <label for="nomor_kk" class="form-label text-danger">Nomor KK</label>
+                                <input type="text" class="form-control @error('nomor_kk') is-invalid @enderror" name="nomor_kk" id="nomor_kk" value="{{ old('nomor_kk') }}" required>
                                 @error('nomor_kk')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -58,18 +58,18 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="nama_lingkungan" class="form-label">Tempat Tanggal Lahir</label>
-                                <input type="text" class="form-control @error('nama_lingkungan') is-invalid @enderror" name="nama_lingkungan" id="nama_lingkungan" value="{{ old('nama_lingkungan') }}" required>
-                                @error('nama_lingkungan')
+                                <label for="TTL" class="form-label text-danger">Tempat & Tanggal Lahir</label>
+                                <input type="text" class="form-control @error('TTL') is-invalid @enderror" name="TTL" id="TTL" value="{{ old('TTL') }}" placeholder="Kota, 00-00-0000" required>
+                                @error('TTL')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="kode_rw" class="form-label">Berat Badan</label>
-                                <input type="text" class="form-control @error('kode_rw') is-invalid @enderror" name="kode_rw" id="kode_rw" value="{{ old('kode_rw') }}" required>
-                                @error('kode_rw')
+                                <label for="berat" class="form-label text-danger">Berat Badan</label>
+                                <input type="text" class="form-control @error('berat') is-invalid @enderror" name="berat" id="berat" value="{{ old('berat') }}" required>
+                                @error('berat')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -78,27 +78,27 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="kode_rt" class="form-label">Penolong Lahir</label>
-                                <input type="text" class="form-control @error('kode_rt') is-invalid @enderror" name="kode_rt" id="kode_rw" value="{{ old('kode_rt') }}" required>
-                                    @error('kode_rt')
+                                <label for="penolong_lahir" class="form-label text-danger">Penolong Lahir</label>
+                                <input type="text" class="form-control @error('penolong_lahir') is-invalid @enderror" name="penolong_lahir" id="penolong_lahir" value="{{ old('penolong_lahir') }}" required>
+                                    @error('penolong_lahir')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="kode_rt" class="form-label">Nama Ayah</label>
-                                <input type="text" class="form-control @error('kode_rt') is-invalid @enderror" name="kode_rt" id="kode_rw" value="{{ old('kode_rt') }}" required>
-                                    @error('kode_rt')
+                                <label for="nama_ayah" class="form-label text-danger">Nama Ayah</label>
+                                <input type="text" class="form-control @error('nama_ayah') is-invalid @enderror" name="nama_ayah" id="nama_ayah" value="{{ old('nama_ayah') }}" required>
+                                    @error('nama_ayah')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="kode_rt" class="form-label">Nama Ibu</label>
-                                <input type="text" class="form-control @error('kode_rt') is-invalid @enderror" name="kode_rt" id="kode_rw" value="{{ old('kode_rt') }}" required>
-                                    @error('kode_rt')
+                                <label for="nama_ibu" class="form-label text-danger">Nama Ibu</label>
+                                <input type="text" class="form-control @error('nama_ibu') is-invalid @enderror" name="nama_ibu" id="nama_ibu" value="{{ old('nama_ibu') }}" required>
+                                    @error('nama_ibu')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -123,33 +123,33 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="kode_rt" class="form-label">Tempat Bersalin</label>
-                                <input type="text" class="form-control @error('kode_rt') is-invalid @enderror" name="kode_rt" id="kode_rw" value="{{ old('kode_rt') }}" required>
-                                    @error('kode_rt')
+                                <label for="tempat_bersalin" class="form-label text-danger">Tempat Bersalin</label>
+                                <input type="text" class="form-control @error('tempat_bersalin') is-invalid @enderror" name="tempat_bersalin" id="tempat_bersalin" value="{{ old('tempat_bersalin') }}" required>
+                                    @error('tempat_bersalin')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="kode_rt" class="form-label">Lingkungan</label>
-                                <input type="text" class="form-control @error('kode_rt') is-invalid @enderror" name="kode_rt" id="kode_rw" value="{{ old('kode_rt') }}" required>
-                                    @error('kode_rt')
+                                <label for="lingkungan" class="form-label text-danger">Lingkungan</label>
+                                <input type="text" class="form-control @error('lingkungan') is-invalid @enderror" name="lingkungan" id="lingkungan" value="{{ old('lingkungan') }}" required>
+                                    @error('lingkungan')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                            <input id="no_kk" name="no_kk" type="hidden" size="40" maxlength="50" required/>
+                            <input id="no_kk" name="no_kk" type="hidden" size="40" maxlength="50" required>
 
-                            <input name="tgl_pendataan" type="hidden" value="" class="input" size="20" maxlength="20"/>
-                            <input name="tahun_pendataan" type="hidden" value="" class="input" size="10" maxlength="10"/>
+                            {{-- <input name="tgl_pendataan" type="hidden" value="{{ $tgl_pendataan }}" class="input" size="20" maxlength="20">
+                            <input name="tahun_pendataan" type="hidden" value="{{ $tahun_pendataan }}" class="input" size="10" maxlength="10"> --}}
                         </div>
                     </div>
             </div>
             <div class="card-footer">
                 <div class="">
-                    <button type="submit" class="btn btn-sm btn-primary">Tambah Data</button>
+                    <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-plus"></i> Tambah Data</button>
                 </div>
             </div>
             </form>

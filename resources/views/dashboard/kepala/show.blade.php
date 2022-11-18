@@ -68,7 +68,7 @@
     </div>
 
     <div class="col-lg-12 mt-3">
-        <table class="table bg-white table-bordered" style="font-size: 14px">
+        <table class="table bg-white table-bordered table-responsive" style="font-size: 14px">
             <thead class="text-white" style="background: #191c1f">
                 <tr>
                     <th scope="col">No</th>
@@ -80,6 +80,7 @@
                     <th scope="col">Agama</th>
                     <th scope="col">Pendidikan</th>
                     <th scope="col">Pekerjaan</th>
+                    <th scope="col">Tanggal Lahir</th>
                     <th scope="col">Ket-</th>
                     <th scope="col" class="text-center">Aksi</th>
                 </tr>
@@ -97,10 +98,11 @@
                     <td>{{ $item->agama }}</td>
                     <td>{{ $item->pendidikan }}</td>
                     <td>{{ $item->pekerjaan }}</td>
+                    <td>{{ $item->tanggal_lahir }}</td>
                     <td>-</td>
                     <td class="text-center">
                         {{-- data-bs-toggle="modal" data-bs-target="#inputAK" --}}
-                        <a href="/dashboard/penduduk/{{ $item->nik }}/edit" class="badge bg-success fs-6"><i class="far fa-edit"></i></a>
+                        <a href="/dashboard/penduduk/{{ $item->nik }}/edit" class="badge bg-warning fs-6 mb-1"><i class="far fa-edit"></i></a>
                         <form action="/dashboard/penduduk/{{ $item->nik }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')

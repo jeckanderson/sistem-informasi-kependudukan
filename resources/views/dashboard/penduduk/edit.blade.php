@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header text-white" style="background: #075985;">
-                <h4 class="fs-6">Ubah Data Anggota Keluarga</h4>
+            <div class="card-header text-white bg-primary">
+                <h4 class="fs-6"><i class="fas fa-plus-circle"></i> Ubah Data Anggota Keluarga</h4>
             </div>
             <div class="card-body">
                 <form action="/dashboard/penduduk/{{ $data->nik }}" method="post">
@@ -93,18 +93,17 @@
                             <div class="mb-3">
                                 <label for="pekerjaan" class="form-label text-danger">pekerjaan</label>
                                 <select class="form-select @error('pekerjaan') is-invalid @enderror" name="pekerjaan" id="pekerjaan" required>
-                                    <option selected value="">-Pilih Pekerjaan-</option>
-                                    <option value="Guru" {{ old('pekerjaan') == 'Guru' ? 'selected=selected' : '' }}>Guru</option>
-                                    <option value="Dosen" {{ old('pekerjaan') == 'Dosen' ? 'selected=selected' : '' }}>Dosen</option>
-                                    <option value="Programmer" {{ old('pekerjaan') == 'Programmer' ? 'selected=selected' : '' }}>Programmer</option>
-                                    <option value="Dokter" {{ old('pekerjaan') == 'Dokter' ? 'selected=selected' : '' }}>Dokter</option>
-                                    <option value="PNS" {{ old('pekerjaan') == 'PNS' ? 'selected=selected' : '' }}>PNS</option>
-                                    <option value="TNI" {{ old('pekerjaan') == 'TNI' ? 'selected=selected' : '' }}>TNI</option>
-                                    <option value="Polisi" {{ old('pekerjaan') == 'Polisi' ? 'selected=selected' : '' }}>Polisi</option>
-                                    <option value="Perawat" {{ old('pekerjaan') == 'Perawat' ? 'selected=selected' : '' }}>Perawat</option>
-                                    <option value="Pengusaha" {{ old('pekerjaan') == 'Pengusaha' ? 'selected=selected' : '' }}>Pengusaha</option>
-                                    <option value="Pelajar" {{ old('pekerjaan') == 'Pelajar' ? 'selected=selected' : '' }}>Pelajar</option>
-                                    <option value="Lain-lain" {{ old('pekerjaan') == 'Lain-lain' ? 'selected=selected' : '' }}>Lain-lain</option>
+                                    <option value="Guru" {{ $data->pekerjaan == 'Guru' ? 'selected' : '' }}>Guru</option>
+                                    <option value="Dosen" {{ $data->pekerjaan == 'Dosen' ? 'selected' : '' }}>Dosen</option>
+                                    <option value="Programmer" {{ $data->pekerjaan == 'Programmer' ? 'selected' : '' }}>Programmer</option>
+                                    <option value="Dokter" {{ $data->pekerjaan == 'Dokter' ? 'selected' : '' }}>Dokter</option>
+                                    <option value="PNS" {{ $data->pekerjaan == 'PNS' ? 'selected' : '' }}>PNS</option>
+                                    <option value="TNI" {{ $data->pekerjaan == 'TNI' ? 'selected' : '' }}>TNI</option>
+                                    <option value="Polisi" {{ $data->pekerjaan == 'Polisi' ? 'selected' : '' }}>Polisi</option>
+                                    <option value="Perawat" {{ $data->pekerjaan == 'Perawat' ? 'selected' : '' }}>Perawat</option>
+                                    <option value="Pengusaha" {{ $data->pekerjaan == 'Pengusaha' ? 'selected' : '' }}>Pengusaha</option>
+                                    <option value="Pelajar" {{ $data->pekerjaan == 'Pelajar' ? 'selected' : '' }}>Pelajar</option>
+                                    <option value="Lain-lain" {{ $data->pekerjaan == 'Lain-lain' ? 'selected' : '' }}>Lain-lain</option>
                                   </select>
                                 {{-- <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror" name="pekerjaan" id="pekerjaan"> --}}
                                 @error('pekerjaan')
@@ -117,7 +116,7 @@
                     </div>
             </div>
             <div class="card-footer">
-                <button type="submit" name="submit" class="btn btn-primary float-end">Ubah Data</button>
+                <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"><i class="far fa-edit"></i> Ubah Data</button>
             </form>
             </div>
         </div>
