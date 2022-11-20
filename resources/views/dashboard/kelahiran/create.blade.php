@@ -139,7 +139,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <input id="no_kk" name="no_kk" type="hidden" size="40" maxlength="50" required>
+                            {{-- <input id="nomor_kk" name="nomor_kk" type="hidden" size="40" maxlength="50" required> --}}
 
                             <input name="tgl_pendataan" type="hidden" value="{{ $tgl_pendataan }}" class="input" size="20" maxlength="20">
                             <input name="tahun_pendataan" type="hidden" value="{{ $tahun_pendataan }}" class="input" size="10" maxlength="10">

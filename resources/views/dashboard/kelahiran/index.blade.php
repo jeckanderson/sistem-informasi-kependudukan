@@ -9,6 +9,9 @@
                         <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill">
                             <i class="fas fa-plus-circle"></i> Tambah Data Kelahiran
                         </a>
+                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-danger float-end rounded-pill">
+                            <i class="far fa-copy"></i> Cetak
+                        </a>
                     </h5>
                 </div>
             </div>
@@ -43,7 +46,7 @@
                 <tbody>
                     @foreach ($data as $key => $item)
                     <tr>
-                        <td>{{ $item->id_kelahiran }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->no_akte }}</td>
                         <td>{{ $item->nomor_kk }}</td>
                         <td>{{ $item->nama }}</td>

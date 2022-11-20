@@ -6,9 +6,12 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6"><h5>Jumlah Data Penduduk ({{ $penduduk->count() }})</h5></div>
-                        {{--tambahDataKepala data-bs-toggle="modal" data-bs-target="#formModal" --}}
-                        <div class="col-md-6"><a href="/dashboard/penduduk/create" class="text-center"><i class="far fa-copy fs-4"></i></a></div>
+                        <div class="col-md-6">
+                            <h5>Jumlah Data Penduduk ({{ $penduduk->count() }})</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/dashboard/penduduk/create" class="text-center"><i class="far fa-copy fs-4"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -20,10 +20,12 @@ class KelahiranController extends Controller
 
     public function index()
     {
+        // first untuk urutan pertama
+        // last untuk urutan
         return view('dashboard.kelahiran.index', [
             'title' => 'Data Kelahiran',
-            'data' => Kelahiran::all(),
-            // 'data' => Kelahiran::latest()->paginate(10)->withQueryString(),
+            'data' => Kelahiran::orderBy('id_kelahiran', 'desc')->get(),
+            // 'data' => Kelahiran::first()->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -66,7 +68,7 @@ class KelahiranController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'id_kelahiran' => 'required',
+                // 'id_kelahiran' => 'required',
                 'nomor_kk' => 'required|max:16',
                 'no_akte' => 'required|unique:kelahirans',
                 'nama' => 'required',
@@ -137,9 +139,31 @@ class KelahiranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kelahiran $kelahiran)
     {
-        //
+        // return $request;
+        $validatedData = $request->validate(
+            [
+                'nomor_kk' => 'required|min:16',
+                'no_akte' => 'required',
+                'nama' => 'required',
+                'jender' => 'required',
+                'berat' => 'required',
+                'tempat_bersalin' => 'required',
+                'penolong_lahir' => 'required',
+                'hari_lahir' => 'required',
+                'TTL' => 'required',
+                'tahun_pendataan' => 'required',
+                'nama_ayah' => 'required',
+                'nama_ibu' => 'required',
+                'lingkungan' => 'required',
+                'tgl_pendataan' => 'required',
+            ]
+        );
+
+        Kelahiran::where('id_kelahiran', $kelahiran->id_kelahiran)->update($validatedData);
+
+        return redirect('/dashboard/kelahiran')->with('success', 'Data Kelahiran di Updated!');
     }
 
     /**

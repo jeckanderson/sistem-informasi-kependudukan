@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Kelahiran;
 use App\Models\Kepala;
+use App\Models\Pendatang;
 use App\Models\Penduduk;
 use App\Models\User;
 use Carbon\Carbon;
@@ -80,7 +81,6 @@ class DatabaseSeeder extends Seeder
             Penduduk::create($value);
         }
 
-
         Kelahiran::create([
             'id_kelahiran' => '0001',
             'nomor_kk' => '2852007380974321',
@@ -98,6 +98,17 @@ class DatabaseSeeder extends Seeder
             'nama_ibu' => 'cek2',
             'lingkungan' => 'lingkungan 1',
             'tgl_pendataan' => '01-10-2001',
+        ]);
+
+        Pendatang::create([
+            'id_pendatang' => '1',
+            'nama_pendatang' => 'Bless',
+            'tgl_datang' => '01-10-2001',
+            'alamat_asal' => 'Alor',
+            'alamat_tujuan' => 'Kupang',
+            'alasan_datang' => 'Kerja',
+            'tgl_pendatang' => '11-10-2022',
+            'tahun_pendataan' => '2022',
         ]);
     }
 }

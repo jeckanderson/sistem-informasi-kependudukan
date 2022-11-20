@@ -13,7 +13,7 @@
                         @method('put')
                         <div class="mb-3">
                             <label for="nomor_kk" class="form-label">Nomor KK</label>
-                            <input type="text" class="form-control  @error('nomor_kk') is-invalid @enderror" name="nomor_kk" id="nomor_kk" value="{{ old('nomor_kk', $item->nomor_kk) }}" required>
+                            <input type="text" class="form-control  @error('nomor_kk', $item->nomor_kk) is-invalid @enderror" name="nomor_kk" id="nomor_kk" value="{{ old('nomor_kk', $item->nomor_kk) }}" required>
                             @error('nomor_kk')
                                 <div class="invalid-feedback">
                                     {{ $message }}

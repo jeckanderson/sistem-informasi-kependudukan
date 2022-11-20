@@ -57,19 +57,19 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Kelahiran</span></a>
     </li>
-    <li class="nav-item {{ Request::is('admin/pembelian*') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/pembelian">
+    <li class="nav-item {{ Request::is('dashboard/pendatang*') ? 'active' : '' }}">
+        <a class="nav-link" href="/dashboard/pendatang">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pendatang</span></a>
     </li>
     <!-- Nav Item - Tables -->
-    <li class="nav-item {{ Request::is('admin/pelanggan*') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/pelanggan">
+    <li class="nav-item {{ Request::is('dashboard/pindah*') ? 'active' : '' }}">
+        <a class="nav-link" href="/dashboard/pindah">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pindah</span></a>
     </li>
-    <li class="nav-item {{ Request::is('admin/pelanggan*') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/pelanggan">
+    <li class="nav-item {{ Request::is('dashboard/kematian*') ? 'active' : '' }}">
+        <a class="nav-link" href="/dashboard/kematian">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Kematian</span></a>
     </li>
