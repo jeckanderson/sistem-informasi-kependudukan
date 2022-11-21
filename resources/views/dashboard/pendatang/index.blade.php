@@ -40,19 +40,19 @@
                     @foreach ($datang as $key => $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>31244232452525235</td>
-                        <td>{{ $data->nama_pendatang }}</td>
+                        <td>{{ $data->nik }}</td>
+                        <td>{{ $data->nama_lengkap }}</td>
                         <td>{{ $data->tgl_datang }}</td>
                         <td>{{ $data->alamat_asal }}</td>
                         <td>{{ $data->alamat_tujuan }}</td>
                         <td>{{ $data->alasan_datang }}</td>
-                        <td>{{ $data->tgl_pendatang }}</td>
+                        <td>{{ $data->tgl_pendataan }}</td>
                         <td class="text-center">
                             <a href="/dashboard/pendatang/{{ $data->id_pendatang }}/edit" class="btn btn-sm btn-warning mb-1"><i class="far fa-edit"></i></a>
                             <form action="/dashboard/kelahiran/{{ $data->id_pendatang }}" method="POST" class="d-inline ">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm" onclick="return confirm('Anda akan menghapus {{ $data->nama_pendatang }}, yakin?')"><i class="fas fa-times-circle"></i></button>
+                                <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm" onclick="return confirm('Anda akan menghapus {{ $data->nama_lengkap }}, yakin?')"><i class="fas fa-times-circle"></i></button>
                             </form>
                         </td>
                     </tr>

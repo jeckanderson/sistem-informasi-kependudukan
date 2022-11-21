@@ -15,13 +15,13 @@ class CreatePendatangsTable extends Migration
     {
         Schema::create('pendatangs', function (Blueprint $table) {
             $table->id('id_pendatang');
-            $table->string('nik', 16);
+            $table->string('nik', 16)->foreignId();
             // $table->int('id_penduduk', 11);
             $table->string('tgl_datang', 100);
             $table->string('alamat_asal', 100);
             $table->string('alamat_tujuan', 100);
             $table->string('alasan_datang');
-            $table->string('tgl_pendatang', 100);
+            $table->string('tgl_pendataan', 100);
             $table->string('tahun_pendataan', 100);
             $table->timestamps();
         });

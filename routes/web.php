@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::resource('/dashboard/user', UserController::class);
 Route::resource('/dashboard/kepala', KepalaController::class);
 Route::get('/dashboard/kepala/inputak/{no_kk}', [KepalaController::class, 'inputak']);
-Route::post('/dashboard/kepala/insert/', [KepalaController::class, 'insert']);
+Route::post('/dashboard/kepala/insert', [KepalaController::class, 'insert']);
 Route::post('/dashboard/kepala/updateak/{no_kk}', [KepalaController::class, 'updateak']);
 Route::resource('/dashboard/penduduk', PendudukController::class);
 Route::resource('/dashboard/kelahiran', KelahiranController::class);

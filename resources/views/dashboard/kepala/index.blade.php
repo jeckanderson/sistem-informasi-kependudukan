@@ -57,9 +57,7 @@
                         @else
                             <a href="/dashboard/kepala/{{ $item->nomor_kk }}" class="btn btn-sm btn-success d-none rounded-pill">Lihat AK <span>(0)</span></a>
                         @endif
-                        {{-- data-bs-toggle="modal" data-bs-target="#inputAK" --}}
                         <a href="/dashboard/kepala/inputak/{{ $item->nomor_kk }}" class="btn btn-sm btn-primary rounded-pill">Input AK</a>
-                        {{-- data-bs-toggle="modal" data-bs-target="#formModal" data-id="{{ $item->nomor_kk }}" --}}
                         <a href="/dashboard/kepala/{{ $item->nomor_kk }}/edit" class="btn btn-sm btn-warning tampilModalUbah rounded-pill"><i class="far fa-edit"></i></a>
                         <form action="/dashboard/kepala/{{ $item->nomor_kk }}" method="POST" class="d-inline ">
                             @csrf

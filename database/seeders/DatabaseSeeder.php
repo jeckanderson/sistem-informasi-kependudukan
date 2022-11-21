@@ -100,15 +100,15 @@ class DatabaseSeeder extends Seeder
             'tgl_pendataan' => '01-10-2001',
         ]);
 
-        Pendatang::create([
-            'id_pendatang' => '1',
-            'nama_pendatang' => 'Bless',
-            'tgl_datang' => '01-10-2001',
-            'alamat_asal' => 'Alor',
-            'alamat_tujuan' => 'Kupang',
-            'alasan_datang' => 'Kerja',
-            'tgl_pendatang' => '11-10-2022',
-            'tahun_pendataan' => '2022',
-        ]);
+        // Pendatang::create([
+        //     'id_pendatang' => '1',
+        //     'nama_pendatang' => 'Bless',
+        //     'tgl_datang' => '01-10-2001',
+        //     'alamat_asal' => 'Alor',
+        //     'alamat_tujuan' => 'Kupang',
+        //     'alasan_datang' => 'Kerja',
+        //     'tgl_pendatang' => '11-10-2022',
+        //     'tahun_pendataan' => '2022',
+        // ]);
     }
 }

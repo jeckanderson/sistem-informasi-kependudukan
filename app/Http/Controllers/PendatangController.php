@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendatang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PendatangController extends Controller
 {
@@ -19,9 +20,15 @@ class PendatangController extends Controller
 
     public function index()
     {
+        $data = DB::table('pendatangs')
+            ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik')
+            ->where('pendatangs.nik', 1)
+            ->get();
+
         return view('dashboard.pendatang.index', [
             'title' => 'Data Pendatang',
-            'datang' => Pendatang::orderBy('id_pendatang', 'desc')->get(),
+            // 'datang' => Pendatang::orderBy('id_pendatang', 'desc')->get(),
+            'datang' => $data,
         ]);
     }
 
@@ -32,8 +39,12 @@ class PendatangController extends Controller
      */
     public function create()
     {
+        $tgl_pendataan = gmdate('d-m-Y');
+        $tahun_pendataan = gmdate('Y');
         return view('dashboard.pendatang.create', [
             'title' => 'Tambah Data Penduduk Masuk',
+            'tgl_pendataan' => $tgl_pendataan,
+            'tahun_pendataan' => $tahun_pendataan,
         ]);
     }
 
@@ -45,7 +56,19 @@ class PendatangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nik' => 'required|min:16',
+            'tgl_datang' => 'required',
+            'alamat_asal' => 'required',
+            'alamat_tujuan' => 'required',
+            'alasan_datang' => 'required',
+            'tgl_pendataan' => 'required',
+            'tahun_pendataan' => 'required',
+        ]);
+
+        Pendatang::create($validatedData);
+
+        return redirect('/dashboard/pendatang')->with('success', 'Data Penduduk Datang di Tambahkan!');
     }
 
     /**

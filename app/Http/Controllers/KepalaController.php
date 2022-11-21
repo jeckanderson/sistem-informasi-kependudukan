@@ -170,6 +170,7 @@ class KepalaController extends Controller
 
     public function insert(Request $request)
     {
+        // return $request;
         $validatedData = $request->validate([
             'nik' => 'required|min:16|unique:penduduks',
             'nomor_kk' => 'required|min:16',

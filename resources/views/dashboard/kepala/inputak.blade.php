@@ -144,7 +144,6 @@
                                     <option value="Pelajar" {{ old('pekerjaan') == 'Pelajar' ? 'selected=selected' : '' }}>Pelajar</option>
                                     <option value="Lain-lain" {{ old('pekerjaan') == 'Lain-lain' ? 'selected=selected' : '' }}>Lain-lain</option>
                                   </select>
-                                {{-- <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror" name="pekerjaan" id="pekerjaan"> --}}
                                 @error('pekerjaan')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -156,7 +155,7 @@
             </div>
             <div class="card-footer">
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-sm btn-primary float-end rounded-pill"><i class="fas fa-plus"></i> Tambah Data</button>
+                    <button type="submit" name="submit" class="btn btn-sm btn-primary float-end rounded-pill"><i class="fas fa-plus"></i> Tambah Data</button>
                 </div>
             </div>
         </form>

@@ -3,7 +3,7 @@
 @section('container')
     <div class="row pb-4">
         <div class="col-lg-6 mb-4">
-            <form action="/dashboard/kepala" method="POST">
+            <form action="/dashboard/pendatang" method="POST">
                 @csrf
                 <div class="card">
                     <div class="card-header bg-primary">
@@ -20,9 +20,9 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nomor_kk" class="form-label">Nomor KK</label>
-                            <input type="text" class="form-control  @error('nomor_kk') is-invalid @enderror" name="nomor_kk" id="nomor_kk" value="{{ old('nomor_kk') }}" placeholder="Cukup isikan NIK penduduk saja" required>
-                            @error('nomor_kk')
+                            <label for="nik" class="form-label">NIK</label>
+                            <input type="text" class="form-control  @error('nik') is-invalid @enderror" name="nik" id="nik" value="{{ old('nik') }}" placeholder="Cukup isikan NIK penduduk saja" required>
+                            @error('nik')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -73,6 +73,8 @@
                             </div>
                         @enderror
                         </div>
+                        <input name="tgl_pendataan" type="hidden" value="{{ $tgl_pendataan }}" class="input" size="20" maxlength="20">
+                        <input name="tahun_pendataan" type="hidden" value="{{ $tahun_pendataan }}" class="input" size="10" maxlength="10">
                     </div>
                     <div class="card-footer">
                         <div class="mb-3">
