@@ -5,8 +5,8 @@
         <div class="col-md-12 mb-5">
             <div class="card">
                 <div class="card-header">
-                    <h5>Data Penduduk Masuk
-                        <a href="/dashboard/pendatang/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill">
+                    <h5>Data Penduduk Datang
+                        <a href="/dashboard/pendatang/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Pendatang
                         </a>
                         <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-danger float-end rounded-pill">
@@ -42,14 +42,14 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nik }}</td>
                         <td>{{ $data->nama_lengkap }}</td>
-                        <td>{{ $data->tgl_datang }}</td>
+                        <td>{{ date("d F Y", strtotime($data->tgl_datang)) }}</td>
                         <td>{{ $data->alamat_asal }}</td>
                         <td>{{ $data->alamat_tujuan }}</td>
                         <td>{{ $data->alasan_datang }}</td>
-                        <td>{{ $data->tgl_pendataan }}</td>
+                        <td>{{ date("d F Y", strtotime($data->tgl_pendataan)) }}</td>
                         <td class="text-center">
                             <a href="/dashboard/pendatang/{{ $data->id_pendatang }}/edit" class="btn btn-sm btn-warning mb-1"><i class="far fa-edit"></i></a>
-                            <form action="/dashboard/kelahiran/{{ $data->id_pendatang }}" method="POST" class="d-inline ">
+                            <form action="/dashboard/pendatang/{{ $data->id_pendatang }}" method="POST" class="d-inline ">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm" onclick="return confirm('Anda akan menghapus {{ $data->nama_lengkap }}, yakin?')"><i class="fas fa-times-circle"></i></button>

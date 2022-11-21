@@ -50,7 +50,7 @@
                             <td>{{ $item->jender }}</td>
                             <td>{{ $item->status_nikah }}</td>
                             <td>{{ $item->relasi }}</td>
-                            <td>{{ $item->tanggal_lahir }}</td>
+                            <td>{{ date("d F Y", strtotime($item->tanggal_lahir)) }}</td>
                             <td>{{ $item->agama }}</td>
                             <td>{{ $item->pendidikan }}</td>
                             <td>{{ $item->pekerjaan }}</td>

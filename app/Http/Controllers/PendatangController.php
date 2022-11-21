@@ -22,12 +22,11 @@ class PendatangController extends Controller
     {
         $data = DB::table('pendatangs')
             ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik')
-            ->where('pendatangs.nik', 1)
+            ->orderBy('id_pendatang', 'desc')
             ->get();
 
         return view('dashboard.pendatang.index', [
             'title' => 'Data Pendatang',
-            // 'datang' => Pendatang::orderBy('id_pendatang', 'desc')->get(),
             'datang' => $data,
         ]);
     }
@@ -88,9 +87,21 @@ class PendatangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pendatang $pendatang)
     {
-        //
+        $data = DB::table('pendatangs')
+            ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik')
+            ->where('pendatangs.id_pendatang', $pendatang->id_pendatang)
+            ->get();
+        $tgl_pendataan = gmdate('d-m-Y');
+        $tahun_pendataan = gmdate('Y');
+
+        return view('dashboard.pendatang.edit', [
+            'title' => 'Edit Data Peduduk Datang',
+            'datang' => $data[0],
+            'tgl_pendataan' => $tgl_pendataan,
+            'tahun_pendataan' => $tahun_pendataan
+        ]);
     }
 
     /**
@@ -100,9 +111,21 @@ class PendatangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pendatang $pendatang)
     {
-        //
+        $validatedData = $request->validate([
+            'nik' => 'required|min:16',
+            'tgl_datang' => 'required',
+            'alamat_asal' => 'required',
+            'alamat_tujuan' => 'required',
+            'alasan_datang' => 'required',
+            'tgl_pendataan' => 'required',
+            'tahun_pendataan' => 'required',
+        ]);
+
+        Pendatang::where('id_pendatang', $pendatang->id_pendatang)->update($validatedData);
+
+        return redirect('/dashboard/pendatang')->with('success', 'Data Pendatang di Ubah!');
     }
 
     /**
@@ -111,8 +134,9 @@ class PendatangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pendatang $pendatang)
     {
-        //
+        Pendatang::destroy($pendatang->id_pendatang);
+        return redirect('/dashboard/pendatang')->with('success', 'Data pendatang di hapus');
     }
 }
