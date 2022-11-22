@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header text-white bg-primary">
-                    <h5>Edit Data Kepala Keluarga</h5>
+                    <h6><i class="far fa-edit"></i> Edit Data Kepala Keluarga</h6>
                 </div>
                 <div class="card-body">
                     <form action="/dashboard/kepala/{{ $item->nomor_kk }}" method="POST">

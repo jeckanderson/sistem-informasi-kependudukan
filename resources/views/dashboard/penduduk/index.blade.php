@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="row mt-3">
-        <div class="col-md-12">
+        <div class="col-md-12 mb-5">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -55,7 +55,7 @@
                             <td>{{ $item->pendidikan }}</td>
                             <td>{{ $item->pekerjaan }}</td>
                             {{-- <td>{{ $item->penduduk->nama_kecamatan }}</td> --}}
-                            <td>-</td>
+                            <td>-Pindah</td>
                             {{-- <td>
                                 <a href="/dashboard/user/edit" class="badge bg-primary text-white">Update</a>
                                 <form action="/dashboard/user/" method="POST" class="d-inline">

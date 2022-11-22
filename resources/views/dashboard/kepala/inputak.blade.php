@@ -45,9 +45,9 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="status_nikah" class="form-label text-danger">Status Nikah</label>
+                                <label for="status_nikah" class="form-label text-danger">SHDRT</label>
                                 <select class="form-select @error('status_nikah') is-invalid @enderror" name="status_nikah" id="status_nikah" required>
-                                    <option selected disabled value="">-Pilih Status Nikah-</option>
+                                    <option selected disabled value="">-Pilih Status-</option>
                                     <option value="Menikah" {{ old('status_nikah') == 'Menikah' ? 'selected=selected' : '' }}>Menikah</option>
                                     <option value="Lajang" {{ old('status_nikah') == 'Lajang' ? 'selected=selected' : '' }}>Lajang</option>
                                     <option value="Janda" {{ old('status_nikah') == 'Janda' ? 'selected=selected' : '' }}>Janda</option>

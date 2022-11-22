@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pendatang;
+use App\Models\Pindah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PendatangController extends Controller
+class PindahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +20,15 @@ class PendatangController extends Controller
 
     public function index()
     {
-        $data = DB::table('pendatangs')
-            ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik')
-            ->orderBy('id_pendatang', 'desc')
+        $data = DB::table('pindahs')
+            ->leftJoin('penduduks', 'pindahs.nik', '=', 'penduduks.nik')
+            ->orderBy('id_pindah', 'desc')
             ->get();
 
-        return view('dashboard.pendatang.index', [
-            'title' => 'Data Pendatang',
-            'datang' => $data,
+        return view('dashboard.pindah.index', [
+            'title' => 'Data Penduduk Pindah',
+            'pindah' => $data,
+            // 'pindah' => Pindah::all(),
         ]);
     }
 
@@ -41,10 +42,10 @@ class PendatangController extends Controller
         $tgl_pendataan = gmdate('d-m-Y');
         $tahun_pendataan = gmdate('Y');
 
-        return view('dashboard.pendatang.create', [
-            'title' => 'Tambah Data Penduduk Masuk',
+        return view('dashboard.pindah.create', [
+            'title' => 'Data Penduduk Pindah',
             'tgl_pendataan' => $tgl_pendataan,
-            'tahun_pendataan' => $tahun_pendataan,
+            'tahun_pendataan' => $tahun_pendataan
         ]);
     }
 
@@ -58,17 +59,17 @@ class PendatangController extends Controller
     {
         $validatedData = $request->validate([
             'nik' => 'required|min:16',
-            'tgl_datang' => 'required',
+            'tgl_pindah' => 'required',
             'alamat_asal' => 'required',
-            'alamat_tujuan' => 'required',
-            'alasan_datang' => 'required',
+            'tujuan' => 'required',
+            'jenis_pindah' => 'required',
             'tgl_pendataan' => 'required',
             'tahun_pendataan' => 'required',
         ]);
 
-        Pendatang::create($validatedData);
+        Pindah::create($validatedData);
 
-        return redirect('/dashboard/pendatang')->with('success', 'Data Penduduk Datang di Tambahkan!');
+        return redirect('/dashboard/pindah')->with('success', 'Data Penduduk Pindah di Tambahkan!');
     }
 
     /**
@@ -88,19 +89,19 @@ class PendatangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pendatang $pendatang)
+    public function edit(Pindah $pindah)
     {
-        $data = DB::table('pendatangs')
-            ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik')
-            ->where('pendatangs.id_pendatang', $pendatang->id_pendatang)
+        $data = DB::table('pindahs')
+            ->leftJoin('penduduks', 'pindahs.nik', '=', 'penduduks.nik')
+            ->where('pindahs.id_pindah', $pindah->id_pindah)
             ->get();
 
         $tgl_pendataan = gmdate('d-m-Y');
         $tahun_pendataan = gmdate('Y');
 
-        return view('dashboard.pendatang.edit', [
-            'title' => 'Edit Data Peduduk Datang',
-            'datang' => $data[0],
+        return view('dashboard.pindah.edit', [
+            'title' => 'Edit Data Peduduk Pindah',
+            'pindah' => $data[0],
             'tgl_pendataan' => $tgl_pendataan,
             'tahun_pendataan' => $tahun_pendataan
         ]);
@@ -113,21 +114,21 @@ class PendatangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pendatang $pendatang)
+    public function update(Request $request, Pindah $pindah)
     {
         $validatedData = $request->validate([
             'nik' => 'required|min:16',
-            'tgl_datang' => 'required',
+            'tgl_pindah' => 'required',
             'alamat_asal' => 'required',
-            'alamat_tujuan' => 'required',
-            'alasan_datang' => 'required',
+            'tujuan' => 'required',
+            'jenis_pindah' => 'required',
             'tgl_pendataan' => 'required',
             'tahun_pendataan' => 'required',
         ]);
 
-        Pendatang::where('id_pendatang', $pendatang->id_pendatang)->update($validatedData);
+        Pindah::where('id_pindah', $pindah->id_pindah)->update($validatedData);
 
-        return redirect('/dashboard/pendatang')->with('success', 'Data Pendatang di Ubah!');
+        return redirect('/dashboard/pindah')->with('success', 'Data Penduduk Pindah di Ubah!');
     }
 
     /**
@@ -136,9 +137,9 @@ class PendatangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pendatang $pendatang)
+    public function destroy(Pindah $pindah)
     {
-        Pendatang::destroy($pendatang->id_pendatan);
-        return redirect('/dashboard/pendatang')->with('success', 'Data pendatang di hapus');
+        Pindah::destroy($pindah->id_pindah);
+        return redirect('/dashboard/pindah')->with('success', 'Data pindah penduduk di hapus');
     }
 }

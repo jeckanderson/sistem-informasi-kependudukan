@@ -24,7 +24,7 @@ class PendudukController extends Controller
         // return $dk;
         return view('dashboard.penduduk.index', [
             'title' => 'Penduduk',
-            'penduduk' => Penduduk::all(),
+            'penduduk' => Penduduk::orderBy('nik', 'DESC')->get(),
         ]);
     }
 

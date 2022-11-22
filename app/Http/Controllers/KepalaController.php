@@ -123,7 +123,7 @@ class KepalaController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'nomor_kk' => 'required|max:16',
+                'nomor_kk' => 'required|min:16',
                 'no_telpon' => 'required',
                 'nama_kecamatan' => 'required',
                 'nama_kelurahan' => 'required',
@@ -141,6 +141,14 @@ class KepalaController extends Controller
                 'kode_rt.required' => 'kode rt tidak boleh kosong',
             ]
         );
+
+        // if ($request->nomor_kk != $kepala->nomor_kk && $request->no_telpon != $kepala->no_telpon) {
+        //     $rules['nomor_kk'] = 'required|max:16|unique:kepalas';
+        //     $rules['no_telpon'] = 'required|unique:kepalas';
+        // }
+        // $request->no_telpon != $kepala->no_telpon
+        // $validatedData = $request->validate($rules);
+        // $validatedData['nomor_kk'] = $request->nomor_kk;
 
         Kepala::where('nomor_kk', $kepala->nomor_kk)->update($validatedData);
 

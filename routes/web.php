@@ -8,6 +8,7 @@ use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KepalaController;
 use App\Http\Controllers\PendatangController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\PindahController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -33,6 +34,7 @@ Route::post('/dashboard/kepala/updateak/{no_kk}', [KepalaController::class, 'upd
 Route::resource('/dashboard/penduduk', PendudukController::class);
 Route::resource('/dashboard/kelahiran', KelahiranController::class);
 Route::resource('/dashboard/pendatang', PendatangController::class);
+Route::resource('/dashboard/pindah', PindahController::class);
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
