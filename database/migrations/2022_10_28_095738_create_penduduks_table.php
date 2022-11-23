@@ -17,9 +17,9 @@ class CreatePenduduksTable extends Migration
             $table->string('nik', 16)->primary();
             $table->string('nomor_kk', 16)->foreignId();
             $table->string('nama_lengkap', 50);
-            $table->enum('jender', ['Laki-laki','Perempuan']);
-            $table->enum('status_nikah', ['Menikah','Janda','Duda','Lajang','Tidak Menikah']);
-            $table->enum('relasi', ['Suami','Istri','Anak Kandung','Anak Angkat','Keponakan','Lain-lain']);
+            $table->enum('jender', ['L', 'P']);
+            $table->enum('status_nikah', ['Menikah', 'Janda', 'Duda', 'Lajang', 'Tidak Menikah']);
+            $table->enum('relasi', ['Suami', 'Istri', 'Anak Kandung', 'Anak Angkat', 'Keponakan', 'Lain-lain']);
             // $table->string('tempat_lahir', 50);
             $table->date('tanggal_lahir');
             $table->string('agama');

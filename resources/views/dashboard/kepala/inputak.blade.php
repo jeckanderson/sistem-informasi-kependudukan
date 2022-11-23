@@ -35,8 +35,8 @@
                                 <label for="jender" class="form-label text-danger">Jender (JK)</label>
                                 <select class="form-select @error('jender') is-invalid @enderror" name="jender" id="jender" required>
                                     <option selected disabled value="">-Pilih Jender-</option>
-                                    <option value="Laki-laki" {{ old('jender') == 'Laki-laki' ? 'selected=selected' : '' }}>Laki-Laki</option>
-                                    <option value="Perempuan" {{ old('jender') == 'Perempuan' ? 'selected=selected' : '' }}>Perempuan</option>
+                                    <option value="L" {{ old('jender') == 'L' ? 'selected=selected' : '' }}>Laki-Laki</option>
+                                    <option value="P" {{ old('jender') == 'P' ? 'selected=selected' : '' }}>Perempuan</option>
                                   </select>
                                 @error('jender')
                                     <div class="invalid-feedback">
@@ -45,7 +45,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="status_nikah" class="form-label text-danger">SHDRT</label>
+                                <label for="status_nikah" class="form-label text-danger">Status</label>
                                 <select class="form-select @error('status_nikah') is-invalid @enderror" name="status_nikah" id="status_nikah" required>
                                     <option selected disabled value="">-Pilih Status-</option>
                                     <option value="Menikah" {{ old('status_nikah') == 'Menikah' ? 'selected=selected' : '' }}>Menikah</option>
@@ -62,7 +62,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="relasi" class="form-label text-danger">Relasi</label>
+                                <label for="relasi" class="form-label text-danger">SHDRT</label>
                                 <select class="form-select @error('relasi') is-invalid @enderror" name="relasi" id="relasi" required>
                                     <option selected disabled value="">-Pilih Relasi-</option>
                                     <option value="Suami" {{ old('relasi') == 'Suami' ? 'selected=selected' : '' }}>Suami</option>
@@ -121,7 +121,6 @@
                                     <option value="SMP" {{ old('pendidikan') == 'SMP' ? 'selected=selected' : '' }}>SMP</option>
                                     <option value="SD" {{ old('pendidikan') == 'SD' ? 'selected=selected' : '' }}>SD</option>
                                   </select>
-                                {{-- <input type="text" class="form-control  @error('pendidikan') is-invalid @enderror" name="pendidikan" id="pendidikan"> --}}
                                 @error('pendidikan')
                                     <div class="invalid-feedback">
                                         {{ $message }}

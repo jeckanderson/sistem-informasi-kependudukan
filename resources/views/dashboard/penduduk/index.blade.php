@@ -10,7 +10,7 @@
                             <h5>Jumlah Data Penduduk ({{ $penduduk->count() }})</h5>
                         </div>
                         <div class="col-md-6">
-                            <a href="/dashboard/penduduk/create" class="text-center"><i class="far fa-copy fs-4"></i></a>
+                            <a href="/dashboard/penduduk/create" title="Cetak Data Penduduk" class="text-center"><i class="far fa-copy fs-4"></i></a>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">NIK</th>
                         <th scope="col">No KK</th>
-                        <th scope="col">Gender</th>
+                        <th scope="col">Jender</th>
                         <th scope="col">Status</th>
                         <th scope="col">Relasi</th>
                         <th scope="col">TTL</th>

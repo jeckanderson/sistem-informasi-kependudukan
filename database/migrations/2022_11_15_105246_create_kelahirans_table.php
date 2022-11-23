@@ -15,7 +15,7 @@ class CreateKelahiransTable extends Migration
     {
         Schema::create('kelahirans', function (Blueprint $table) {
             $table->id('id_kelahiran', 11);
-            $table->foreignId('nomor_kk', 100);
+            $table->foreignId('nomor_kk', 16);
             $table->string('no_akte', 100);
             $table->string('nama', 100);
             $table->string('jender', 100);

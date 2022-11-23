@@ -9,8 +9,8 @@
                         <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Kelahiran
                         </a>
-                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-danger float-end rounded-pill">
-                            <i class="far fa-copy"></i> Cetak
+                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-info float-end rounded-pill" title="Cetak Data Kelahiran">
+                            <i class="fas fa-print"></i> Cetak
                         </a>
                     </h5>
                 </div>
@@ -25,7 +25,7 @@
             <table class="table bg-white table-bordered table-responsive mt-2">
                 <thead class="text-white" style="font-size: 14px; background: #075985;">
                     <tr>
-                        <th scope="col">No Lahir</th>
+                        <th scope="col">No</th>
                         <th scope="col">No Akte</th>
                         <th scope="col">No KK</th>
                         <th scope="col">Nama Anak</th>
@@ -62,15 +62,13 @@
                         <td>{{ $item->lingkungan }}</td>
                         <td>{{ $item->tgl_pendataan }}</td>
                         <td class="text-center">
-                            {{-- @php
-                                $dataa = DB::select("SELECT nomor_kk FROM penduduks WHERE nomor_kk = $item->nomor_kk");
-                            @endphp --}}
-                            <a href="/dashboard/kelahiran/{{ $item->id_kelahiran }}/edit" class="btn btn-sm btn-warning mb-1"><i class="far fa-edit"></i></a>
+                            <a href="/dashboard/kelahiran/{{ $item->id_kelahiran }}/edit" class="btn btn-sm btn-warning mb-1 rounded-pill" title="Ubah Data Kelahiran {{ $item->nama }}"><i class="far fa-edit"></i></a>
                             <form action="/dashboard/kelahiran/{{ $item->id_kelahiran }}" method="POST" class="d-inline ">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm" onclick="return confirm('Anda akan menghapus {{ $item->nama }}, yakin?')"><i class="fas fa-times-circle"></i></button>
+                                <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm mb-1 rounded-pill" onclick="return confirm('Anda akan menghapus {{ $item->nama }}, yakin?')" title="Hapus Data Kelahiran {{ $item->nama }}"><i class="fas fa-times-circle"></i></button>
                             </form>
+                            <a href="/dashboard/kelahiran/{{ $item->id_kelahiran }}/edit" class="btn btn-sm btn-info rounded-pill" title="Print Data Kelahiran {{ $item->nama }}"><i class="fas fa-print"></i></a>
                         </td>
                     </tr>
                     @endforeach

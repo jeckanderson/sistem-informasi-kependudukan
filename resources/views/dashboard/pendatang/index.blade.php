@@ -9,8 +9,8 @@
                         <a href="/dashboard/pendatang/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Pendatang
                         </a>
-                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-danger float-end rounded-pill">
-                            <i class="far fa-copy"></i> Cetak
+                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-info float-end rounded-pill">
+                            <i class="fas fa-print"></i> Cetak
                         </a>
                     </h5>
                 </div>
@@ -28,6 +28,7 @@
                         <th scope="col">No</th>
                         <th scope="col">NIK</th>
                         <th scope="col">Nama Lengkap</th>
+                        <th scope="col">Jender</th>
                         <th scope="col">Tanggal Datang</th>
                         <th scope="col">Alamat Asal</th>
                         <th scope="col">Alamat Tujuan</th>
@@ -42,6 +43,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nik }}</td>
                         <td>{{ $data->nama_lengkap }}</td>
+                        <td>{{ $data->jender }}</td>
                         <td>{{ date("d F Y", strtotime($data->tgl_datang)) }}</td>
                         <td>{{ $data->alamat_asal }}</td>
                         <td>{{ $data->alamat_tujuan }}</td>

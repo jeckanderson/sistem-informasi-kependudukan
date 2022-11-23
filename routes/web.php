@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelahiranController;
+use App\Http\Controllers\KematianController;
 use App\Http\Controllers\KepalaController;
 use App\Http\Controllers\PendatangController;
 use App\Http\Controllers\PendudukController;
@@ -35,6 +36,7 @@ Route::resource('/dashboard/penduduk', PendudukController::class);
 Route::resource('/dashboard/kelahiran', KelahiranController::class);
 Route::resource('/dashboard/pendatang', PendatangController::class);
 Route::resource('/dashboard/pindah', PindahController::class);
+Route::resource('/dashboard/kematian', KematianController::class);
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
