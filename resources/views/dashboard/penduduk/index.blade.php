@@ -36,7 +36,7 @@
                         <th scope="col">Agama</th>
                         <th scope="col">Pendidikan</th>
                         <th scope="col">Pekerjaan</th>
-                        <th scope="col">Ket-</th>
+                        <th scope="col">Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +55,11 @@
                             <td>{{ $item->pendidikan }}</td>
                             <td>{{ $item->pekerjaan }}</td>
                             {{-- <td>{{ $item->penduduk->nama_kecamatan }}</td> --}}
-                            <td>-Pindah</td>
+                            @if(!empty($item->id_kematian))
+                                <td class="text-danger">Ninggal</td>
+                            @else
+                                <td> </td>
+                            @endif
                             {{-- <td>
                                 <a href="/dashboard/user/edit" class="badge bg-primary text-white">Update</a>
                                 <form action="/dashboard/user/" method="POST" class="d-inline">

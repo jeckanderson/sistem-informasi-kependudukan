@@ -29,7 +29,7 @@
                         <th scope="col">Nama Lengkap</th>
                         <th scope="col">Jender</th>
                         <th scope="col">Alamat Lengkap</th>
-                        {{-- <th scope="col">Warga Negara</th> --}}
+                        {{-- <th scope="col">KK</th> --}}
                         <th scope="col">Tanggal Meninggal</th>
                         <th scope="col">Tempat</th>
                         <th scope="col">Penyebab</th>
@@ -44,7 +44,9 @@
                         <td>{{ $data->nama_lengkap }}</td>
                         <td>{{ $data->jender }}</td>
                         <td>-</td>
-                        {{-- <td>-</td> --}}
+                        {{-- @if($data->nomor_kk == $data->nik)
+                            <td>{{ $data->lingkungan }}</td>
+                        @endif --}}
                         <td>{{ date("d F Y", strtotime($data->tgl_meninggal)) }}</td>
                         <td>{{ $data->tempat_meninggal }}</td>
                         <td>{{ $data->sebab }}</td>

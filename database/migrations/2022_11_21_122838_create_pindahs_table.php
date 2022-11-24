@@ -14,8 +14,8 @@ class CreatePindahsTable extends Migration
     public function up()
     {
         Schema::create('pindahs', function (Blueprint $table) {
-            $table->id('id_pindah');
-            $table->string('nik', 16)->foreignId();
+            $table->id('id_pindah', 20);
+            $table->foreignId('nik', 16);
             // $table->string('nama_lengkap', 100);
             $table->string('tgl_pindah');
             $table->string('tgl_pendataan');

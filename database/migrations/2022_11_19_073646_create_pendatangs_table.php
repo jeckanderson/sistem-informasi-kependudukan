@@ -15,7 +15,7 @@ class CreatePendatangsTable extends Migration
     {
         Schema::create('pendatangs', function (Blueprint $table) {
             $table->id('id_pendatang');
-            $table->string('nik', 16)->foreignId();
+            $table->foreignId('nik', 16);
             // $table->int('id_penduduk', 11);
             $table->string('tgl_datang');
             $table->string('alamat_asal', 100);

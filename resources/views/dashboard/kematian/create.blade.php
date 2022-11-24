@@ -19,6 +19,10 @@
                                 </div>
                             @enderror
                         </div>
+                        {{-- <div class="mb-3">
+                            <label for="id_penduduk" class="form-label text-danger">ID Pnduduk</label>
+                            <input type="text" class="form-control" name="id_penduduk" id="id_penduduk" readonly="readonly" required>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="tgl_meninggal" class="form-label text-danger">Tanggal Meninggal</label>
                             <input type="date" class="form-control @error('tgl_meninggal') is-invalid @enderror" name="tgl_meninggal" id="tgl_meninggal" value="{{ old('tgl_meninggal') }}" required>

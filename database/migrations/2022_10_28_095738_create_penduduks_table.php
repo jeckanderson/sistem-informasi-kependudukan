@@ -14,8 +14,8 @@ class CreatePenduduksTable extends Migration
     public function up()
     {
         Schema::create('penduduks', function (Blueprint $table) {
-            $table->string('nik', 16)->primary();
-            $table->string('nomor_kk', 16)->foreignId();
+            $table->id('nik', 16);
+            $table->foreignId('nomor_kk', 16);
             $table->string('nama_lengkap', 50);
             $table->enum('jender', ['L', 'P']);
             $table->enum('status_nikah', ['Menikah', 'Janda', 'Duda', 'Lajang', 'Tidak Menikah']);

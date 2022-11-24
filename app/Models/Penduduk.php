@@ -9,8 +9,11 @@ class Penduduk extends Model
 {
     use HasFactory;
 
+    // protected $primaryKey = 'nik';
+    // protected $foreignKey = 'nomor_kk';
+
     protected $primaryKey = 'nik';
-    protected $foreignKey = 'nomor_kk';
+    // protected $foreignKey = 'nomor_kk';
 
     protected $fillable = [
         'nik',

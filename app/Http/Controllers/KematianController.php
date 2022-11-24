@@ -23,9 +23,10 @@ class KematianController extends Controller
     {
         $data = DB::table('kematians')
             ->leftJoin('penduduks', 'kematians.nik', '=', 'penduduks.nik')
+            // ->leftJoin('kepalas', 'kematians.nik', '=', 'kepalas.nik')
             ->orderBy('id_kematian', 'desc')
             ->get();
-        var_dump($data);
+        // var_dump($data);
 
         return view('dashboard.kematian.index', [
             'title' => 'Data Kematian',
@@ -56,10 +57,12 @@ class KematianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Kematian $kematian)
     {
+        // return $request;
         $validatedData = $request->validate([
             'nik' => 'required|min:16',
+            // 'id_penduduk' => 'required',
             'tgl_meninggal' => 'required',
             'tempat_meninggal' => 'required',
             'sebab' => 'required',

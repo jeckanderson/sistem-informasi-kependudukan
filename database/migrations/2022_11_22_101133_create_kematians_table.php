@@ -15,7 +15,7 @@ class CreateKematiansTable extends Migration
     {
         Schema::create('kematians', function (Blueprint $table) {
             $table->id('id_kematian');
-            $table->string('nik', 16)->foreignId();
+            $table->foreignId('nik', 16);
             $table->string('tgl_meninggal');
             $table->string('tempat_meninggal', 100);
             $table->longText('sebab');

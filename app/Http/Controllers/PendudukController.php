@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PendudukController extends Controller
 {
@@ -20,11 +21,17 @@ class PendudukController extends Controller
 
     public function index()
     {
-        // $dk =  Penduduk::all();
-        // return $dk;
+        $penduduk = DB::table('penduduks')
+            ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
+            ->select('penduduks.*', 'kematians.id_kematian')
+            ->get();
+        // var_dump($penduduk);
+        // die;
+
         return view('dashboard.penduduk.index', [
             'title' => 'Penduduk',
-            'penduduk' => Penduduk::orderBy('nik', 'DESC')->get(),
+            // 'penduduk' => Penduduk::orderBy('nik', 'DESC')->get(),
+            'penduduk' => $penduduk
         ]);
     }
 
