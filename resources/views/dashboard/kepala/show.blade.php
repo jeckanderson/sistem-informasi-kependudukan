@@ -8,7 +8,7 @@
         </div>
     @endif
     <div class="col-lg-12 text-center">
-        <a href="#"><i class="far fa-copy fs-4 pb-3"></i></a>
+        <a href="#" title="Print Data Anggota Keluarga"><i class="far fa-copy fs-4 pb-3"></i></a>
         <h3>DATA ANGGOTA KELUARGA</h3>
         <h6>NOMOR: {{ $data[0]->nomor_kk }} </h6>
     </div>
@@ -85,7 +85,6 @@
                     <th scope="col" class="text-center">Aksi</th>
                 </tr>
             </thead>
-            {{-- skip(1) --}}
             <tbody>
                 @foreach ($data as $item)
                 <tr>
@@ -99,9 +98,14 @@
                     <td>{{ $item->pendidikan }}</td>
                     <td>{{ $item->pekerjaan }}</td>
                     <td>{{ date("d F Y", strtotime($item->tanggal_lahir)) }}</td>
-                    <td>-</td>
+                    @if(!empty($detail->id_kematian))
+                        <td><p class="bg-danger text-white text-center">Ninggal</p></td>
+                    @elseif(!empty($detail->id_pindah))
+                        <td><p class="bg-info text-white text-center">Pindah</p></td>
+                    @else
+                        <td></td>
+                    @endif
                     <td class="text-center">
-                        {{-- data-bs-toggle="modal" data-bs-target="#inputAK" --}}
                         <a href="/dashboard/penduduk/{{ $item->nik }}/edit" class="badge bg-warning fs-6 mb-1"><i class="far fa-edit"></i></a>
                         <form action="/dashboard/penduduk/{{ $item->nik }}" method="POST" class="d-inline">
                             @csrf

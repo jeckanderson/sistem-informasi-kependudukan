@@ -1,7 +1,19 @@
 @extends('dashboard.templates.main')
 
 @section('container')
-    <div class="row mt-3">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-12">
+            <form action="/dashboard/kematian">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" id="search" placeholder="Masukan keyword pencarian..">
+                    {{-- value="{{ request('search') }}" --}}
+                    <button class="btn btn-sm btn-primary" type="submit"><i class="fas fa-search fa-sm"></i> Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-12 mb-5">
             <div class="card">
                 <div class="card-header">
@@ -9,8 +21,8 @@
                         <a href="/dashboard/kematian/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Kematian
                         </a>
-                        <a href="/dashboard/kematian/create" type="button" class="btn btn-sm btn-info float-end rounded-pill">
-                            <i class="fas fa-print"></i> Cetak
+                        <a href="/dashboard/kematian/create" type="button" class="btn btn-sm btn-success float-end rounded-pill">
+                            <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>
                 </div>
@@ -38,9 +50,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($ninggal as $key => $data)
+                    @foreach ($item as $key => $data)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->firstItem() + $key }}</td>
                         <td>{{ $data->nama_lengkap }}</td>
                         <td>{{ $data->jender }}</td>
                         <td>-</td>
@@ -68,19 +80,19 @@
                 <div class="col-lg-6">
                     <div>
                         Showing
-                        {{-- {{ $data->firstItem() }} --}}
+                        {{ $item->firstItem() }}
                         to
-                        {{-- {{ $data->lastItem() }} --}}
+                        {{ $item->lastItem() }}
                         of
-                        {{-- {{ $data->total() }} --}}
+                        {{ $item->total() }}
                         entries
                     </div>
                 </div>
-                {{-- <div class="col-lg-6 d-flex justify-content-end">
+                <div class="col-lg-6 d-flex justify-content-end">
                     <div>
-                        {{ $data->links() }}
+                        {{ $item->links() }}
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

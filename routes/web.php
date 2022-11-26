@@ -33,6 +33,7 @@ Route::get('/dashboard/kepala/inputak/{no_kk}', [KepalaController::class, 'input
 Route::post('/dashboard/kepala/insert', [KepalaController::class, 'insert']);
 Route::post('/dashboard/kepala/updateak/{no_kk}', [KepalaController::class, 'updateak']);
 Route::resource('/dashboard/penduduk', PendudukController::class);
+Route::get('/dashboard/penduduk/print', [PendudukController::class, 'print']);
 Route::resource('/dashboard/kelahiran', KelahiranController::class);
 Route::resource('/dashboard/pendatang', PendatangController::class);
 Route::resource('/dashboard/pindah', PindahController::class);

@@ -35,8 +35,8 @@
                             <div class="mb-3">
                                 <label for="jender" class="form-label text-danger">Jender (JK)</label>
                                 <select class="form-select @error('jender') is-invalid @enderror" name="jender" id="jender" required>
-                                    <option value="Laki-laki" {{ $data->jender =="Laki-laki" ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="Perempuan" {{ $data->jender =="Perempuan" ? 'selected' : '' }}>Perempuan</option>
+                                    <option value="L" {{ $data->jender =="L" ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="P" {{ $data->jender =="P" ? 'selected' : '' }}>Perempuan</option>
                                 </select>
                             </div>
                             <div class="mb-3">

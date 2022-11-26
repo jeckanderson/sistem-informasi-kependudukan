@@ -1,7 +1,19 @@
 @extends('dashboard.templates.main')
 
 @section('container')
-<div class="row mt-3">
+<div class="row mt-3 justify-content-center">
+    <div class="col-md-12">
+        <form action="/dashboard/kepala">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="search" id="search" placeholder="Masukan keyword pencarian..">
+                {{-- value="{{ request('search') }}" --}}
+                <button class="btn btn-sm btn-primary" type="submit"><i class="fas fa-search fa-sm"></i> Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row mb-5">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
@@ -19,6 +31,7 @@
             </div>
         @endif
 
+        @if($data->count())
         <table class="table bg-white table-bordered table-responsive mt-2">
             <thead class="text-white" style="font-size: 14px; background: #075985;">
                 <tr>
@@ -46,7 +59,6 @@
                     <td>{{ $item->nama_lingkungan }}</td>
                     <td>{{ $item->kode_rw }}</td>
                     <td>{{ $item->kode_rt }}</td>
-                    {{-- <td>{{ $item->penduduk()->agama }}</td> --}}
                     <td>-</td>
                     <td class="text-center">
                         @php
@@ -69,6 +81,10 @@
                 @endforeach
             </tbody>
         </table>
+        @else
+            <h5 class="bg-danger text-white text-center py-4">Data KK tidak ditemukan</h5>
+        @endif
+        
         <div class="card-footer border">
             <div class="d-flex">
                 <div class="col-lg-6">

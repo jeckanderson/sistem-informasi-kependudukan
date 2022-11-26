@@ -21,13 +21,20 @@ class PendatangController extends Controller
     public function index()
     {
         $data = DB::table('pendatangs')
-            ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik')
-            ->orderBy('id_pendatang', 'desc')
-            ->get();
+            ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik');
+
+        if (request('search')) {
+            $data->where('nama_lengkap', 'like', '%' . request('search') . '%')
+                // ->orWhere('nik', 'like', '%' . request('search') . '%')
+                ->orWhere('alamat_asal', 'like', '%' . request('search') . '%')
+                ->orWhere('alamat_tujuan', 'like', '%' . request('search') . '%')
+                ->orWhere('tahun_pendataan', 'like', '%' . request('search') . '%');
+        }
 
         return view('dashboard.pendatang.index', [
             'title' => 'Data Pendatang',
-            'datang' => $data,
+            // 'datang' => $data->paginate(6)->withQueryString(),
+            'datang' => $data->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -54,17 +61,22 @@ class PendatangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Pendatang $pendatang)
     {
-        $validatedData = $request->validate([
-            'nik' => 'required|min:16',
-            'tgl_datang' => 'required',
-            'alamat_asal' => 'required',
-            'alamat_tujuan' => 'required',
-            'alasan_datang' => 'required',
-            'tgl_pendataan' => 'required',
-            'tahun_pendataan' => 'required',
-        ]);
+        $validatedData = $request->validate(
+            [
+                'nik' => 'required|max:16|unique:pendatangs',
+                'tgl_datang' => 'required',
+                'alamat_asal' => 'required',
+                'alamat_tujuan' => 'required',
+                'alasan_datang' => 'required',
+                'tgl_pendataan' => 'required',
+                'tahun_pendataan' => 'required',
+            ],
+            // [
+            //     'nik.unique:pendatangs' => 'nik sudah ada di data pendatang',
+            // ]
+        );
 
         Pendatang::create($validatedData);
 
@@ -138,7 +150,7 @@ class PendatangController extends Controller
      */
     public function destroy(Pendatang $pendatang)
     {
-        Pendatang::destroy($pendatang->id_pendatan);
+        Pendatang::destroy($pendatang->id_pendatang);
         return redirect('/dashboard/pendatang')->with('success', 'Data pendatang di hapus');
     }
 }

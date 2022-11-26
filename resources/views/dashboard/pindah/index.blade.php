@@ -1,7 +1,19 @@
 @extends('dashboard.templates.main')
 
 @section('container')
-    <div class="row mt-3">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-12">
+            <form action="/dashboard/pindah">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" id="search" placeholder="Masukan keyword pencarian..">
+                    {{-- value="{{ request('search') }}" --}}
+                    <button class="btn btn-sm btn-primary" type="submit"><i class="fas fa-search fa-sm"></i> Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-12 mb-5">
             <div class="card">
                 <div class="card-header">
@@ -9,8 +21,8 @@
                         <a href="/dashboard/pindah/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Pindah
                         </a>
-                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-info float-end rounded-pill">
-                            <i class="fas fa-print"></i> Cetak
+                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-success float-end rounded-pill">
+                            <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>
                 </div>
@@ -40,22 +52,21 @@
                 <tbody>
                     @foreach ($pindah as $key => $data)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $pindah->firstItem() + $key }}</td>
                         <td>{{ $data->nik }}</td>
                         <td>{{ $data->nama_lengkap }}</td>
                         <td>{{ $data->jender }}</td>
                         <td>{{ date("d F Y", strtotime($data->tgl_pindah)) }}</td>
-                        {{-- <td>{{ $data->tahun_pendataan }}</td> --}}
                         <td>{{ $data->alamat_asal }}</td>
                         <td>{{ $data->tujuan }}</td>
                         <td>{{ $data->jenis_pindah }}</td>
                         <td>{{ date("d F Y", strtotime($data->tgl_pendataan)) }}</td>
                         <td class="text-center">
-                            <a href="/dashboard/pindah/{{ $data->id_pindah }}/edit" class="btn btn-sm btn-warning mb-1"><i class="far fa-edit"></i></a>
+                            <a href="/dashboard/pindah/{{ $data->id_pindah }}/edit" class="btn btn-sm btn-warning mb-1 rounded-pill"><i class="far fa-edit"></i></a>
                             <form action="/dashboard/pindah/{{ $data->id_pindah }}" method="POST" class="d-inline ">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm" onclick="return confirm('Anda akan menghapus {{ $data->nama_lengkap }}, yakin?')"><i class="fas fa-times-circle"></i></button>
+                                <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm rounded-pill" onclick="return confirm('Anda akan menghapus {{ $data->nama_lengkap }}, yakin?')"><i class="fas fa-times-circle"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -66,19 +77,19 @@
                 <div class="col-lg-6">
                     <div>
                         Showing
-                        {{-- {{ $data->firstItem() }} --}}
+                        {{ $pindah->firstItem() }}
                         to
-                        {{-- {{ $data->lastItem() }} --}}
+                        {{ $pindah->lastItem() }}
                         of
-                        {{-- {{ $data->total() }} --}}
+                        {{ $pindah->total() }}
                         entries
                     </div>
                 </div>
-                {{-- <div class="col-lg-6 d-flex justify-content-end">
+                <div class="col-lg-6 d-flex justify-content-end">
                     <div>
-                        {{ $data->links() }}
+                        {{ $pindah->links() }}
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

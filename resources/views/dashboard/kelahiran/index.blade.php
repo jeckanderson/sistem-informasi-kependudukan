@@ -1,7 +1,19 @@
 @extends('dashboard.templates.main')
 
 @section('container')
-    <div class="row mt-3">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-12">
+            <form action="/dashboard/kelahiran">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" id="search" placeholder="Masukan keyword pencarian..">
+                    {{-- value="{{ request('search') }}" --}}
+                    <button class="btn btn-sm btn-primary" type="submit"><i class="fas fa-search fa-sm"></i> Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-12 mb-5">
             <div class="card">
                 <div class="card-header">
@@ -9,8 +21,8 @@
                         <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Kelahiran
                         </a>
-                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-info float-end rounded-pill" title="Cetak Data Kelahiran">
-                            <i class="fas fa-print"></i> Cetak
+                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-success float-end rounded-pill" title="Cetak Data Kelahiran">
+                            <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>
                 </div>
@@ -22,6 +34,7 @@
                 </div>
             @endif
 
+        @if($kelahiran->count())
             <table class="table bg-white table-bordered table-responsive mt-2">
                 <thead class="text-white" style="font-size: 14px; background: #075985;">
                     <tr>
@@ -44,9 +57,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $key => $item)
+                    @foreach ($kelahiran as $key => $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $kelahiran->firstItem() + $key }}</td>
                         <td>{{ $item->no_akte }}</td>
                         <td>{{ $item->nomor_kk }}</td>
                         <td>{{ $item->nama }}</td>
@@ -74,23 +87,28 @@
                     @endforeach
                 </tbody>
             </table>
+
+        @else
+            <h5 class="text-center text-danger py-4">Data Kelahiran Tidak Ada</h5>
+        @endif
+
             <div class="card-footer border d-flex">
                 <div class="col-lg-6">
                     <div>
                         Showing
-                        {{-- {{ $data->firstItem() }} --}}
+                        {{ $kelahiran->firstItem() }}
                         to
-                        {{-- {{ $data->lastItem() }} --}}
+                        {{ $kelahiran->lastItem() }}
                         of
-                        {{-- {{ $data->total() }} --}}
+                        {{ $kelahiran->total() }}
                         entries
                     </div>
                 </div>
-                {{-- <div class="col-lg-6 d-flex justify-content-end">
+                <div class="col-lg-6 d-flex justify-content-end">
                     <div>
-                        {{ $data->links() }}
+                        {{ $kelahiran->links() }}
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

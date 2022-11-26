@@ -18,11 +18,19 @@ class KepalaController extends Controller
      */
     public function index()
     {
-        // $data = Kepala::latest()->paginate(6)->withQueryString();
-        // return $data;
+        $data = Kepala::latest();
+
+        if (request('search')) {
+            $data->where('nomor_kk', 'like', '%' . request('search') . '%')
+                ->orWhere('no_telpon', 'like', '%' . request('search') . '%')
+                ->orWhere('nama_kecamatan', 'like', '%' . request('search') . '%')
+                ->orWhere('nama_kelurahan', 'like', '%' . request('search') . '%')
+                ->orWhere('nama_lingkungan', 'like', '%' . request('search') . '%');
+        }
+
         return view('dashboard.kepala.index', [
             'title' => 'Data Kepala Keluarga',
-            'data' => Kepala::latest()->paginate(6)->withQueryString(),
+            'data' => $data->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -80,18 +88,31 @@ class KepalaController extends Controller
      */
     public function show(Kepala $kepala)
     {
-        // $allData = [];
         $data = DB::table('kepalas')
-            ->join('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
+            ->leftjoin('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
             ->where('penduduks.nomor_kk', '=', $kepala->nomor_kk)
             ->get();
-        // foreach ($data as $dat) {
-        //     $allData[] = $dat;
-        // }
+
+        // $data = DB::table('penduduks')
+        //     ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
+        //     ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
+        //     ->leftjoin('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
+        //     ->where('penduduks.nomor_kk', '=', $kepala->nomor_kk)
+        //     ->get();
+        // var_dump($data);
+
+        // $detail = DB::table('penduduks')
+        //     ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
+        //     ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
+        //     ->leftjoin('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
+        //     ->select('penduduks.*', 'kematians.id_kematian', 'pindahs.id_pindah')
+        //     ->where('penduduks.nomor_kk', '=', $kepala->nomor_kk)
+        //     ->get();
+        // var_dump($detail);
 
         return view('dashboard.kepala.show', [
             'title' => 'Detail Anggota Keluarga',
-            // 'data_kk' => $kepala,
+            // 'detail' => $detail,
             'data' => $data,
         ]);
     }

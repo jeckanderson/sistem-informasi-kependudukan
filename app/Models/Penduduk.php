@@ -9,12 +9,8 @@ class Penduduk extends Model
 {
     use HasFactory;
 
-    // protected $primaryKey = 'nik';
-    // protected $foreignKey = 'nomor_kk';
-
     protected $primaryKey = 'nik';
     // protected $foreignKey = 'nomor_kk';
-
     protected $fillable = [
         'nik',
         'nomor_kk',
@@ -31,5 +27,13 @@ class Penduduk extends Model
     // public function kepala()
     // {
     //     return $this->belongsTo(Kepala::class);
+    // }
+
+    // public function scopefilter($query)
+    // {
+    //     if (request('search')) {
+    //         return $query->where('nama_lengkap', 'like', '%' . request('search') . '%');
+    //         ->orWhere('body', 'like', '%' . request('search') . '%');
+    //     }
     // }
 }

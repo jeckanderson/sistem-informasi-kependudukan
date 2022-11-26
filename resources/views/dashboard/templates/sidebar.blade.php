@@ -73,12 +73,12 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Kematian</span></a>
     </li>
-    <hr class="sidebar-divider mt-3">
+    {{-- <hr class="sidebar-divider mt-3">
     <li class="nav-item {{ Request::is('admin/laporan*') ? 'active' : '' }}">
         <a class="nav-link" href="/admin/laporan">
             <i class="fas fa-fw fa-folder"></i>
             <span>Laporan Pembelian</span></a>
-    </li>
+    </li> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider">

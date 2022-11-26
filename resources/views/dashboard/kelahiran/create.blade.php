@@ -148,7 +148,7 @@
             </div>
             <div class="card-footer">
                 <div class="">
-                    <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-plus"></i> Tambah Data</button>
+                    <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-plus-circle"></i> Tambah Data</button>
                 </div>
             </div>
             </form>

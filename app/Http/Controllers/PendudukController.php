@@ -21,17 +21,29 @@ class PendudukController extends Controller
 
     public function index()
     {
+        // latest urutkan berdasarkan paling baru
         $penduduk = DB::table('penduduks')
             ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
-            ->select('penduduks.*', 'kematians.id_kematian')
-            ->get();
-        // var_dump($penduduk);
-        // die;
+            ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
+            ->select('penduduks.*', 'kematians.id_kematian', 'pindahs.id_pindah')
+            ->latest();
+
+        if (request('search')) {
+            $penduduk->where('nomor_kk', 'like', '%' . request('search') . '%')
+                // ->orWhere('nik', 'like', '%' . request('search') . '%')
+                ->orWhere('nama_lengkap', 'like', '%' . request('search') . '%')
+                ->orWhere('jender', 'like', '%' . request('search') . '%')
+                ->orWhere('status_nikah', 'like', '%' . request('search') . '%')
+                ->orWhere('relasi', 'like', '%' . request('search') . '%')
+                ->orWhere('agama', 'like', '%' . request('search') . '%')
+                ->orWhere('pendidikan', 'like', '%' . request('search') . '%')
+                ->orWhere('pekerjaan', 'like', '%' . request('search') . '%');
+        }
 
         return view('dashboard.penduduk.index', [
             'title' => 'Penduduk',
-            // 'penduduk' => Penduduk::orderBy('nik', 'DESC')->get(),
-            'penduduk' => $penduduk
+            // 'penduduk' => Penduduk::latest()->filter()->get(),
+            'penduduk' => $penduduk->paginate(15)->withQueryString(),
         ]);
     }
 
@@ -145,5 +157,10 @@ class PendudukController extends Controller
     {
         Penduduk::destroy($penduduk->nik);
         return redirect('/dashboard/kepala/show')->with('success', 'data anggota keluarga berhasil di hapus');
+    }
+
+    public function print()
+    {
+        return view('dashboard.penduduk.printpdf');
     }
 }

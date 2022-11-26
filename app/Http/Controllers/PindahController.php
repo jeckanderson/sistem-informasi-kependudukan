@@ -22,13 +22,21 @@ class PindahController extends Controller
     {
         $data = DB::table('pindahs')
             ->leftJoin('penduduks', 'pindahs.nik', '=', 'penduduks.nik')
-            ->orderBy('id_pindah', 'desc')
-            ->get();
+            ->orderBy('id_pindah', 'desc');
+
+        if (request('search')) {
+            $data->where('nomor_kk', 'like', '%' . request('search') . '%')
+                // ->orWhere('nik', 'like', '%' . request('search') . '%')
+                ->orWhere('nama_lengkap', 'like', '%' . request('search') . '%')
+                ->orWhere('jender', 'like', '%' . request('search') . '%')
+                ->orWhere('alamat_asal', 'like', '%' . request('search') . '%')
+                ->orWhere('tujuan', 'like', '%' . request('search') . '%')
+                ->orWhere('jenis_pindah', 'like', '%' . request('search') . '%');
+        }
 
         return view('dashboard.pindah.index', [
             'title' => 'Data Penduduk Pindah',
-            'pindah' => $data,
-            // 'pindah' => Pindah::all(),
+            'pindah' => $data->paginate(10)->withQueryString(),
         ]);
     }
 

@@ -22,10 +22,21 @@ class KelahiranController extends Controller
     {
         // first untuk urutan pertama
         // last untuk urutan
+        $kelahiran = Kelahiran::latest();
+
+        if (request('search')) {
+            $kelahiran->where('nomor_kk', 'like', '%' . request('search') . '%')
+                ->orWhere('no_akte', 'like', '%' . request('search') . '%')
+                ->orWhere('nama', 'like', '%' . request('search') . '%')
+                ->orWhere('tempat_bersalin', 'like', '%' . request('search') . '%')
+                ->orWhere('penolong_lahir', 'like', '%' . request('search') . '%')
+                ->orWhere('hari_lahir', 'like', '%' . request('search') . '%')
+                ->orWhere('jender', 'like', '%' . request('search') . '%');
+        }
+
         return view('dashboard.kelahiran.index', [
             'title' => 'Data Kelahiran',
-            'data' => Kelahiran::orderBy('id_kelahiran', 'desc')->get(),
-            // 'data' => Kelahiran::first()->paginate(10)->withQueryString(),
+            'kelahiran' => $kelahiran->paginate(10)->withQueryString(),
         ]);
     }
 

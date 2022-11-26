@@ -24,13 +24,21 @@ class KematianController extends Controller
         $data = DB::table('kematians')
             ->leftJoin('penduduks', 'kematians.nik', '=', 'penduduks.nik')
             // ->leftJoin('kepalas', 'kematians.nik', '=', 'kepalas.nik')
-            ->orderBy('id_kematian', 'desc')
-            ->get();
-        // var_dump($data);
+            ->orderBy('id_kematian', 'desc');
+
+        if (request('search')) {
+            $data->where('nomor_kk', 'like', '%' . request('search') . '%')
+                // ->orWhere('nik', 'like', '%' . request('search') . '%')
+                ->orWhere('nama_lengkap', 'like', '%' . request('search') . '%')
+                ->orWhere('tempat_meninggal', 'like', '%' . request('search') . '%')
+                ->orWhere('sebab', 'like', '%' . request('search') . '%')
+                ->orWhere('tgl_pendataan', 'like', '%' . request('search') . '%')
+                ->orWhere('tahun_pendataan', 'like', '%' . request('search') . '%');
+        }
 
         return view('dashboard.kematian.index', [
             'title' => 'Data Kematian',
-            'ninggal' => $data,
+            'item' => $data->paginate(10)->withQueryString(),
         ]);
     }
 

@@ -1,7 +1,19 @@
 @extends('dashboard.templates.main')
 
 @section('container')
-    <div class="row mt-3">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-12">
+            <form action="/dashboard/penduduk">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" id="search" placeholder="Masukan keyword pencarian..">
+                    {{-- value="{{ request('search') }}" --}}
+                    <button class="btn btn-sm btn-primary" type="submit"><i class="fas fa-search fa-sm"></i> Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-12 mb-5">
             <div class="card">
                 <div class="card-header">
@@ -9,8 +21,8 @@
                         <div class="col-md-6">
                             <h5>Jumlah Data Penduduk ({{ $penduduk->count() }})</h5>
                         </div>
-                        <div class="col-md-6">
-                            <a href="/dashboard/penduduk/create" title="Cetak Data Penduduk" class="text-center"><i class="far fa-copy fs-4"></i></a>
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <a href="/dashboard/penduduk/print" title="Print Data Penduduk" class="btn btn-sm btn-success rounded-pill" target="_BLANK"><i class="fas fa-print"></i> Print PDF</a>
                         </div>
                     </div>
                 </div>
@@ -21,7 +33,8 @@
                     {{ session('success') }}
                 </div>
             @endif
-
+        
+            @if($penduduk->count())
             <table class="table bg-white table-responsive table-bordered mt-2" style="font-size: 14px">
                 <thead class="text-white" style="background: #075985">
                     <tr>
@@ -40,10 +53,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- skip(1) --}}
-                    @foreach ($penduduk as $item)
+                    @foreach ($penduduk as $key => $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $penduduk->firstItem() + $key }}</td>
                             <td>{{ $item->nama_lengkap }}</td>
                             <td>{{ $item->nik }}</td>
                             <td>{{ $item->nomor_kk }}</td>
@@ -56,39 +68,36 @@
                             <td>{{ $item->pekerjaan }}</td>
                             {{-- <td>{{ $item->penduduk->nama_kecamatan }}</td> --}}
                             @if(!empty($item->id_kematian))
-                                <td class="text-danger">Ninggal</td>
+                                <td><p class="bg-danger text-white text-center">Ninggal</p></td>
+                            @elseif(!empty($item->id_pindah))
+                                <td><p class="bg-info text-white text-center">Pindah</p></td>
                             @else
                                 <td> </td>
                             @endif
-                            {{-- <td>
-                                <a href="/dashboard/user/edit" class="badge bg-primary text-white">Update</a>
-                                <form action="/dashboard/user/" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="badge bg-danger text-white border-0" onclick="return confirm('yakin?')">Delete</button>
-                                </form>
-                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            @else
+                <h5 class="bg-danger text-white text-center py-4">Data Penduduk tidak ditemukan</h5>
+            @endif
 
             <div class="card-footer border">
                 <div class="d-flex">
                     <div class="col-lg-6">
                         <div>
                             Showing
-                            {{-- {{ $penduduk->firstItem() }} --}}
+                            {{ $penduduk->firstItem() }}
                             to
-                            {{-- {{ $penduduk->lastItem() }} --}}
+                            {{ $penduduk->lastItem() }}
                             of
-                            {{-- {{ $penduduk->total() }} --}}
+                            {{ $penduduk->total() }}
                             entries
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex justify-content-end">
                         <div>
-                            {{-- {{ $data->links() }} --}}
+                            {{ $penduduk->links() }}
                         </div>
                     </div>
                 </div>
