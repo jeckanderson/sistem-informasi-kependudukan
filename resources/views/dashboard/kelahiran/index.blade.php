@@ -18,10 +18,12 @@
             <div class="card">
                 <div class="card-header">
                     <h5>Data Kelahiran
+                        @can('admin')
                         <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Kelahiran
                         </a>
-                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-success float-end rounded-pill" title="Cetak Data Kelahiran">
+                        @endcan
+                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-info float-end rounded-pill" title="Cetak Data Kelahiran">
                             <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>
@@ -75,12 +77,14 @@
                         <td>{{ $item->lingkungan }}</td>
                         <td>{{ $item->tgl_pendataan }}</td>
                         <td class="text-center">
+                            @can('admin')
                             <a href="/dashboard/kelahiran/{{ $item->id_kelahiran }}/edit" class="btn btn-sm btn-warning mb-1 rounded-pill" title="Ubah Data Kelahiran {{ $item->nama }}"><i class="far fa-edit"></i></a>
                             <form action="/dashboard/kelahiran/{{ $item->id_kelahiran }}" method="POST" class="d-inline ">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm mb-1 rounded-pill" onclick="return confirm('Anda akan menghapus {{ $item->nama }}, yakin?')" title="Hapus Data Kelahiran {{ $item->nama }}"><i class="fas fa-times-circle"></i></button>
                             </form>
+                            @endcan
                             <a href="/dashboard/kelahiran/{{ $item->id_kelahiran }}/edit" class="btn btn-sm btn-info rounded-pill" title="Print Data Kelahiran {{ $item->nama }}"><i class="fas fa-print"></i></a>
                         </td>
                     </tr>

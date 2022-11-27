@@ -22,15 +22,19 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if(Auth::attempt($credentials)) {
+        // atempt untuk cekm login yg di masukan user benar atau salah kalau benar arahkan kemana
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); //regenerate() untuk menghindari teknik session fixation
-
-            return redirect()->intended('/dashboard');
+            if (auth()->user()->is_admin == 1) {
+                // return redirect()->route('admin.index');
+                return redirect()->intended('/dashboard');
+            } else {
+                return redirect()->intended('/pegawai');
+            }
+        } else {
+            // kalau passwordnya gagal makan akan di arahkan ke halaman login lagi
+            return back()->with('loginError', 'Login Gagal!');
         }
-
-        // kalau passwordnya gagal makan akan di arahkan ke halaman login lagi
-        return back()->with('loginError', 'Login Gagal!');
-
     }
 
     public function logout(Request $request)
@@ -40,5 +44,4 @@ class LoginController extends Controller
         $request->session()->regenerateToken(); //session regenerateToken bikin baru supaya tidak di bajak
         return redirect('/');
     }
-
 }

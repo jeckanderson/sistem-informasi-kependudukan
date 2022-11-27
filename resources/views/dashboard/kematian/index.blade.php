@@ -18,10 +18,12 @@
             <div class="card">
                 <div class="card-header">
                     <h5>Data Kematian
+                        @can('admin')
                         <a href="/dashboard/kematian/create" type="button" class="btn btn-sm btn-primary float-end rounded-pill ml-1">
                             <i class="fas fa-plus-circle"></i> Tambah Data Kematian
                         </a>
-                        <a href="/dashboard/kematian/create" type="button" class="btn btn-sm btn-success float-end rounded-pill">
+                        @endcan
+                        <a href="/dashboard/kematian/create" type="button" class="btn btn-sm btn-info float-end rounded-pill">
                             <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>
@@ -63,15 +65,19 @@
                         <td>{{ $data->tempat_meninggal }}</td>
                         <td>{{ $data->sebab }}</td>
                         <td>{{ date("d F Y", strtotime($data->tgl_pendataan)) }}</td>
+                        
                         <td class="text-center">
+                            @can('admin')
                             <a href="/dashboard/kematian/{{ $data->id_kematian }}/edit" class="btn btn-sm btn-warning ml-1 rounded-pill"><i class="far fa-edit"></i></a>
                             <form action="/dashboard/kematian/{{ $data->id_kematian }}" method="POST" class="d-inline ">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm rounded-pill" onclick="return confirm('Anda akan menghapus {{ $data->nama_lengkap }}, yakin?')"><i class="fas fa-times-circle"></i></button>
                             </form>
-                            <a href="/dashboard/kematian/{{ $data->id_kematian }}" class="btn btn-sm btn-info rounded-pill" title="Print Data"><i class="fas fa-print"></i></a>
+                            @endcan
+                            <a href="/dashboard/kematian/{{ $data->id_kematian }}" title="Cetak Surat" class="btn btn-sm btn-info rounded-pill" title="Print Data"><i class="fas fa-print"></i></a>
                         </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>

@@ -8,8 +8,8 @@
         </div>
     @endif
     <div class="col-lg-12 text-center">
-        <a href="#" title="Print Data Anggota Keluarga"><i class="far fa-copy fs-4 pb-3"></i></a>
-        <h3>DATA ANGGOTA KELUARGA</h3>
+        <a href="#" title="Print Data Anggota Keluarga" class="btn btn-sm btn-info rounded-pill"><i class="fas fa-print"></i> Print PDF</a>
+        <h3 class="mt-3">DATA ANGGOTA KELUARGA</h3>
         <h6>NOMOR: {{ $data[0]->nomor_kk }} </h6>
     </div>
     <div class="mt-2 border-top"></div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="col-lg-12 mt-3">
-        <table class="table bg-white table-bordered table-responsive" style="font-size: 14px">
+        <table class="table bg-white table-bordered" style="font-size: 14px">
             <thead class="text-white" style="background: #191c1f">
                 <tr>
                     <th scope="col">No</th>
@@ -81,8 +81,10 @@
                     <th scope="col">Pendidikan</th>
                     <th scope="col">Pekerjaan</th>
                     <th scope="col">Tanggal Lahir</th>
-                    <th scope="col">Ket-</th>
+                    <th scope="col">Keterangan</th>
+                    @can('admin')
                     <th scope="col" class="text-center">Aksi</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -105,6 +107,8 @@
                     @else
                         <td></td>
                     @endif
+
+                    @can('admin')
                     <td class="text-center">
                         <a href="/dashboard/penduduk/{{ $item->nik }}/edit" class="badge bg-warning fs-6 mb-1"><i class="far fa-edit"></i></a>
                         <form action="/dashboard/penduduk/{{ $item->nik }}" method="POST" class="d-inline">
@@ -113,6 +117,7 @@
                             <button class="badge bg-danger fs-6 text-white border-0 delete hapus-confirm" onclick="return confirm('Anda akan menghapus {{ $item->nama_lengkap }}, yakin?')"><i class="fas fa-times-circle"></i></button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
                 @endforeach
             </tbody>

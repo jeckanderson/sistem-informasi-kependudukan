@@ -15,6 +15,7 @@
 
 <div class="row mb-5">
     <div class="col-md-12">
+        @can('admin')
         <div class="card">
             <div class="card-header">
                 <h5>Data Kepala Keluarga
@@ -25,6 +26,7 @@
                 </h5>
             </div>
         </div>
+        @endcan
         @if(session('success'))
             <div class="alert alert-success mt-3" role="alert">
                 {{ session('success') }}
@@ -69,6 +71,7 @@
                         @else
                             <a href="/dashboard/kepala/{{ $item->nomor_kk }}" class="btn btn-sm btn-success d-none rounded-pill">Lihat AK <span>(0)</span></a>
                         @endif
+                        @can('admin')
                         <a href="/dashboard/kepala/inputak/{{ $item->nomor_kk }}" class="btn btn-sm btn-primary rounded-pill">Input AK</a>
                         <a href="/dashboard/kepala/{{ $item->nomor_kk }}/edit" class="btn btn-sm btn-warning tampilModalUbah rounded-pill mt-1"><i class="far fa-edit"></i></a>
                         <form action="/dashboard/kepala/{{ $item->nomor_kk }}" method="POST" class="d-inline ">
@@ -76,6 +79,7 @@
                             @method('delete')
                             <button class="btn btn-sm btn-danger text-white border-0 delete rounded-pill mt-1" onclick="return confirm('Anda akan menghapus seluruh anggota keluarga dengan nomor KK ({{ $item->nomor_kk }}) yakin?')"><i class="fas fa-times-circle"></i></button>
                         </form>
+                        @endcan
                     </td>
                 </tr>
                 @endforeach

@@ -151,7 +151,11 @@
                                         <span class="bg-danger p-1 px-3 rounded-bottom">Welcome {{ auth()->user()->name }}</span>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="/dashboard"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                                            @if (auth()->user()->is_admin == 1)
+                                                <li><a class="dropdown-item" href="/dashboard"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>                                                
+                                            @else
+                                                <li><a class="dropdown-item" href="/pegawai"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>    
+                                            @endif
                                             <li><hr class="dropdown-divider"></li>
                                             <li>
                                                 <form action="/logout" method="POST">

@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KematianController;
 use App\Http\Controllers\KepalaController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PendatangController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\PindahController;
@@ -27,7 +28,7 @@ Route::get('/', function () {
     return view('home', ['title' => 'Sistem Informasi Layanan Administrasi Kependudukan']);
 });
 
-Route::resource('/dashboard/user', UserController::class);
+Route::resource('/dashboard/user', UserController::class)->middleware('is_admin');
 Route::resource('/dashboard/kepala', KepalaController::class);
 Route::get('/dashboard/kepala/inputak/{no_kk}', [KepalaController::class, 'inputak']);
 Route::post('/dashboard/kepala/insert', [KepalaController::class, 'insert']);
@@ -46,4 +47,5 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('is_admin');
+Route::get('/pegawai', [PegawaiController::class, 'index'])->middleware('auth');

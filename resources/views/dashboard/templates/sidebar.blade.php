@@ -11,6 +11,7 @@
         <div class="sidebar-brand-text mx-3">App SIK</div>
     </a>
 
+    @can('admin')
     <!-- Divider -->
     <hr class="sidebar-divider">
      <!-- Heading -->
@@ -35,6 +36,8 @@
             <i class="fas fa-users"></i>
             <span>User Akses</span></a>
     </li>
+    @endcan
+
     <!-- Divider -->
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
