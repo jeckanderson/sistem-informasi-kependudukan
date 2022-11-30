@@ -14,7 +14,7 @@
 
                 <main class="form-signin">
                     {{-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> --}}
-                    <h1 class="h3 mb-3 fw-normal text-center text-white fs-3">Silahkan Login</h1>
+                    <h5 class="mb-3 fw-normal text-center text-white">Silahkan Login</h5>
                     <form action="/login" method="POST">
                         @csrf
                         <div class="form-floating">

@@ -88,31 +88,16 @@ class KepalaController extends Controller
      */
     public function show(Kepala $kepala)
     {
-        $data = DB::table('kepalas')
-            ->leftjoin('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
+        $data = DB::table('penduduks')
+            ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
+            ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
+            ->leftjoin('kepalas', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
             ->where('penduduks.nomor_kk', '=', $kepala->nomor_kk)
+            ->select('penduduks.*', 'kepalas.*', 'kematians.*', 'pindahs.*', 'kematians.nik', 'pindahs.nik', 'penduduks.nik')
             ->get();
-
-        // $data = DB::table('penduduks')
-        //     ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
-        //     ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
-        //     ->leftjoin('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
-        //     ->where('penduduks.nomor_kk', '=', $kepala->nomor_kk)
-        //     ->get();
-        // var_dump($data);
-
-        // $detail = DB::table('penduduks')
-        //     ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
-        //     ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
-        //     ->leftjoin('penduduks', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
-        //     ->select('penduduks.*', 'kematians.id_kematian', 'pindahs.id_pindah')
-        //     ->where('penduduks.nomor_kk', '=', $kepala->nomor_kk)
-        //     ->get();
-        // var_dump($detail);
 
         return view('dashboard.kepala.show', [
             'title' => 'Detail Anggota Keluarga',
-            // 'detail' => $detail,
             'data' => $data,
         ]);
     }

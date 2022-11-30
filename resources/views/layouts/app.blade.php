@@ -23,3 +23,4 @@
       </main>
 
       @include('home.footer')
+  

@@ -18,7 +18,7 @@
 
             <div class="col-md-3">
                 <br>
-                <a href="" class="text-decoration-none">
+                <a href="" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#grafikLingkungan">
                     <div class="card bg-danger text-center d-block">
                         <img src="{{ asset('assets/img/grafik_pen.png') }}" alt="grafik" width="50px" class="py-2 mb-3">
                         <div class="align-items-center">
@@ -169,7 +169,7 @@
                             @else
                                 <a href="/login" class="text-decoration-none">
                                     <div class="card bg-secondary text-center d-block">
-                                        <i class="fas fa-sign-in-alt text-white py-2 mb-3" style="font-size: 40px"></i>
+                                        <i class="fas fa-sign-in-alt text-white py-2 mb-3" style="font-size: 35px"></i>
                                         <div class="align-items-center">
                                             <div class="text-center rounded-bottom text-white" style="background-color: rgba(0, 0, 0, 0.5)">LOGIN</div>
                                         </div>
@@ -191,7 +191,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Alur Pembuatan Surat Kebutuhan Penduduk</h5>
+          <h6 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Alur Pembuatan Surat Kebutuhan Penduduk</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -225,7 +225,29 @@
             </div>
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {{-- GRAFIK TIAP LINGKUNGAN --}}
+  <div class="modal fade" id="grafikLingkungan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Grafik Penduduk Tiap Lingkungan</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <div id="chartTiapLingkungan">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
         </div>
       </div>
     </div>
@@ -236,7 +258,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Persyaratan KTP (Kartu Tanda Penduduk)</h5>
+          <h6 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Persyaratan KTP (Kartu Tanda Penduduk)</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -270,7 +292,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
         </div>
       </div>
     </div>
@@ -282,7 +304,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-clone"></i> Persyaratan KK (Kartu Keluarga)</h5>
+          <h6 class="modal-title" id="exampleModalLabel"><i class="fas fa-clone"></i> Persyaratan KK (Kartu Keluarga)</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -313,10 +335,64 @@
             </div>
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
         </div>
       </div>
     </div>
   </div>
-  
+
 @endsection
+
+
+@section('footer')
+  <script src="assets/js/highcharts.js"></script>
+  <script>
+        Highcharts.chart('chartTiapLingkungan', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Grafik Penduduk Pada Tiap Lingkungan'
+        },
+        subtitle: {
+            text: 'Kelurahan Teluk Mutiara'
+        },
+        xAxis: {
+            // categories: {!! json_encode($lingkungan) !!},
+            categories: [
+                'Lingkungan 1',
+                'Lingkungan 2',
+                'Lingkungan 3',
+                'Lingkungan 4'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            title: {
+                useHTML: true,
+                text: 'Million tonnes CO<sub>2</sub>-equivalents'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Jumlah',
+            data: [13.93, 13.63, 13.73, 13.67]
+            // data: {!! json_encode($lingkungan) !!}
+        }]
+    });
+</script>
+@stop
+  

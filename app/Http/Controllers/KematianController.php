@@ -23,12 +23,15 @@ class KematianController extends Controller
     {
         $data = DB::table('kematians')
             ->leftJoin('penduduks', 'kematians.nik', '=', 'penduduks.nik')
-            // ->leftJoin('kepalas', 'kematians.nik', '=', 'kepalas.nik')
+            ->leftJoin('kepalas', 'kepalas.nomor_kk', '=', 'kematians.nik')
+            // ->select('kepalas.*', 'kematians.nik', 'kepalas.nomor_kk')->get();
+            // ->where('kepalas.nomor_kk', '=', 'kematians.nik')->get();
             ->orderBy('id_kematian', 'desc');
+        // var_dump($data);
+        // die;
 
         if (request('search')) {
             $data->where('nomor_kk', 'like', '%' . request('search') . '%')
-                // ->orWhere('nik', 'like', '%' . request('search') . '%')
                 ->orWhere('nama_lengkap', 'like', '%' . request('search') . '%')
                 ->orWhere('tempat_meninggal', 'like', '%' . request('search') . '%')
                 ->orWhere('sebab', 'like', '%' . request('search') . '%')

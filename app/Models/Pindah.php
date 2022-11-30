@@ -9,7 +9,7 @@ class Pindah extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'no_pindah';
+    protected $primaryKey = 'id_pindah';
     protected $fillable = [
         'nik',
         'tgl_pindah',

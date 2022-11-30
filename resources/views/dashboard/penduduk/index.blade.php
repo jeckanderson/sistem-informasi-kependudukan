@@ -66,7 +66,6 @@
                             <td>{{ $item->agama }}</td>
                             <td>{{ $item->pendidikan }}</td>
                             <td>{{ $item->pekerjaan }}</td>
-                            {{-- <td>{{ $item->penduduk->nama_kecamatan }}</td> --}}
                             @if(!empty($item->id_kematian))
                                 <td><p class="bg-danger text-white text-center">Ninggal</p></td>
                             @elseif(!empty($item->id_pindah))

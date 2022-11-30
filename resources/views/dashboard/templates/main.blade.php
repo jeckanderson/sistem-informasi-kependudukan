@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Admin - {{ $title }}</title>
+    <title>
+        @if(Auth()->user()->is_admin == 1) Admin - {{ $title }}
+        @elseif(Auth()->user()->is_admin == 0) Users - {{ $title }}
+        @endif
+    </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

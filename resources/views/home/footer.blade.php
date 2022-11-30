@@ -2,5 +2,6 @@
 
         <script src="assets/js/script.js"></script>
         <script src="assets/jquery/jquery-3.6.1.min.js"></script>
+        @yield('footer')
     </body>
 </html>

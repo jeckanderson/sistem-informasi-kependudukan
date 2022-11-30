@@ -54,7 +54,6 @@
                                     <option value="Duda" {{ old('status_nikah') == 'Duda' ? 'selected=selected' : '' }}>Duda</option>
                                     <option value="Tidak Menikah" {{ old('status_nikah') == 'Tidak Menikah' ? 'selected=selected' : '' }}>Tidak Menikah</option>
                                   </select>
-                                {{-- <input type="text" class="form-control  @error('status_nikah') is-invalid @enderror" name="status_nikah" id="status_nikah"> --}}
                                 @error('status_nikah')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -101,7 +100,6 @@
                                     <option value="Budha" {{ old('agama') == 'Budha' ? 'selected=selected' : '' }}>Budha</option>
                                     <option value="Kong Hu Cu" {{ old('agama') == 'Kong Hu Cu' ? 'selected=selected' : '' }}>Kong Hu Cu</option>
                                   </select>
-                                {{-- <input type="text" class="form-control  @error('agama') is-invalid @enderror" name="agama" id="agama"> --}}
                                 @error('agama')
                                     <div class="invalid-feedback">
                                         {{ $message }}

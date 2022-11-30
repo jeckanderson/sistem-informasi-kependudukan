@@ -18,7 +18,9 @@
             <tr>
                 <td>Nama Kepala Keluarga</td>
                 <td>: &nbsp;&nbsp;</td>
-                <td>Sidebar</td>
+                @if($data[0]->relasi == 'Suami')
+                    <td>{{ $data[0]->nama_lengkap }}</td>
+                @endif
             </tr>
             <tr>
                 <td>Alamat</td>
@@ -100,12 +102,12 @@
                     <td>{{ $item->pendidikan }}</td>
                     <td>{{ $item->pekerjaan }}</td>
                     <td>{{ date("d F Y", strtotime($item->tanggal_lahir)) }}</td>
-                    @if(!empty($detail->id_kematian))
+                    @if(!empty($item->id_kematian))
                         <td><p class="bg-danger text-white text-center">Ninggal</p></td>
-                    @elseif(!empty($detail->id_pindah))
+                    @elseif(!empty($item->id_pindah))
                         <td><p class="bg-info text-white text-center">Pindah</p></td>
                     @else
-                        <td></td>
+                        <td class="text-center">-</td>
                     @endif
 
                     @can('admin')

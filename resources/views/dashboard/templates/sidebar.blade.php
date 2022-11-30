@@ -10,6 +10,14 @@
         </div>
         <div class="sidebar-brand-text mx-3">App SIK</div>
     </a>
+    @if(!Auth()->user()->is_admin == 1)
+    <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="/dashboard">
+            {{-- <i class="fas fa-tasks"></i> --}}
+            <i class="fas fa-th-large"></i>
+            <span>Dashboard</span></a>
+    </li>
+    @endif
 
     @can('admin')
     <!-- Divider -->

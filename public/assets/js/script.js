@@ -64,3 +64,4 @@ function update(id = '') {
         type: var_type,
     });
 }
+

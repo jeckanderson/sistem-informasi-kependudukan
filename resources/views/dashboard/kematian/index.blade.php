@@ -59,7 +59,7 @@
                         <td>{{ $data->jender }}</td>
                         <td>-</td>
                         {{-- @if($data->nomor_kk == $data->nik)
-                            <td>{{ $data->lingkungan }}</td>
+                            <td>{{ $data->nama_lingkungan }}</td>
                         @endif --}}
                         <td>{{ date("d F Y", strtotime($data->tgl_meninggal)) }}</td>
                         <td>{{ $data->tempat_meninggal }}</td>
@@ -77,7 +77,6 @@
                             @endcan
                             <a href="/dashboard/kematian/{{ $data->id_kematian }}" title="Cetak Surat" class="btn btn-sm btn-info rounded-pill" title="Print Data"><i class="fas fa-print"></i></a>
                         </td>
-                        
                     </tr>
                     @endforeach
                 </tbody>

@@ -48,7 +48,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="nama_lingkungan" class="form-label">Lingkungan</label>
-                            <input type="text" class="form-control @error('nama_lingkungan') is-invalid @enderror" name="nama_lingkungan" id="nama_lingkungan" value="{{ old('nama_lingkungan') }}" required>
+                            <select class="form-select @error('nama_lingkungan') is-invalid @enderror" name="nama_lingkungan" id="nama_lingkungan" required>
+                                <option selected disabled value="">-Pilih Lingkungan-</option>
+                                <option value="Linkungan 1" {{ old('nama_lingkungan') == 'Linkungan 1' ? 'selected=selected' : '' }}>Lingkungan 1</option>
+                                <option value="Linkungan 2" {{ old('nama_lingkungan') == 'Linkungan 2' ? 'selected=selected' : '' }}>Lingkungan 2</option>
+                                <option value="Linkungan 3" {{ old('nama_lingkungan') == 'Linkungan 3' ? 'selected=selected' : '' }}>Lingkungan 3</option>
+                                <option value="Linkungan 4" {{ old('nama_lingkungan') == 'Linkungan 4' ? 'selected=selected' : '' }}>Lingkungan 4</option>
+                              </select>
                             @error('nama_lingkungan')
                                 <div class="invalid-feedback">
                                     {{ $message }}

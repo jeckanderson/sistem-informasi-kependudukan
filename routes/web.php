@@ -12,6 +12,7 @@ use App\Http\Controllers\PendatangController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\PindahController;
 use App\Http\Controllers\UserController;
+use App\Models\Kepala;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,19 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('home', ['title' => 'Sistem Informasi Layanan Administrasi Kependudukan']);
+    $kepalas = Kepala::all();
+    $lingkungan = [];
+    // $nilai = [];
+    foreach ($kepalas as $item) {
+        $lingkungan[] = $item->nama_lingkungan;
+    }
+    // dd(count($lingkungan));
+    // dd(json_encode($lingkungan));
+
+    return view('home', [
+        'title' => 'Sistem Informasi Layanan Administrasi Kependudukan',
+        'lingkungan' => $lingkungan
+    ]);
 });
 
 Route::resource('/dashboard/user', UserController::class)->middleware('is_admin');
@@ -47,5 +60,5 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('is_admin');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/pegawai', [PegawaiController::class, 'index'])->middleware('auth');
