@@ -4,8 +4,8 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h4 class="mb-0 text-gray-800">Dashboard</h4>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
     </div>
 
     <!-- Content Row -->
@@ -16,15 +16,13 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            {{-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Produk (Monthly)</div> --}}
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Laporan Penduduk</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Data Penduduk</div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        <div class="col-auto fs-5">
+                            {{ $penduduk->count() }}
                         </div>
                     </div>
-                    <a href="#" class="mt-2 d-block">
+                    <a href="/dashboard/penduduk" class="mt-2 d-block">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -41,15 +39,13 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            {{-- <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Pembelian (Annual)</div> --}}
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Lap. Pindah Domisili</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Data Pindah</div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <div class="col-auto fs-5">
+                            {{ $pindah->count() }}
                         </div>
                     </div>
-                    <a href="#" class="mt-2 d-block">
+                    <a href="/dashboard/pindah" class="mt-2 d-block">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -66,27 +62,17 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            {{-- <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pelanggan (Annual)
-                            </div> --}}
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Lap. Data Kematian</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Data Kematian</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    {{-- <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ count($user->skip(1)) }}</div> --}}
                                 </div>
-                                {{-- <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar"
-                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <div class="col-auto fs-5">
+                            {{ $kematian->count() }}
                         </div>
                     </div>
-                    <a href="#" class="mt-2 d-block">
+                    <a href="/dashboard/kematian" class="mt-2 d-block">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -103,19 +89,14 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            {{-- <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Pending Requests</div> --}}
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Lap. Pendatang
-                                {{-- @if(count($pembelian['status_pembelian']=='sudah kirim pembayaran'))
-                                    Bayar {{ count($pembelian) }}
-                                @endif --}}
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Data Pendatang
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        <div class="col-auto fs-5">
+                            {{ $pendatang->count() }}
                         </div>
                     </div>
-                    <a href="#" class="mt-2 d-block">
+                    <a href="/dashboard/pendatang" class="mt-2 d-block">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

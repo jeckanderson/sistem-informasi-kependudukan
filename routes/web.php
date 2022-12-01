@@ -12,6 +12,7 @@ use App\Http\Controllers\PendatangController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\PindahController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Controller;
 use App\Models\Kepala;
 
 /*
@@ -25,21 +26,26 @@ use App\Models\Kepala;
 |
 */
 
-Route::get('/', function () {
-    $kepalas = Kepala::all();
-    $lingkungan = [];
-    // $nilai = [];
-    foreach ($kepalas as $item) {
-        $lingkungan[] = $item->nama_lingkungan;
-    }
-    // dd(count($lingkungan));
-    // dd(json_encode($lingkungan));
+// Route::get('/', function () {
+//     $kepalas = Kepala::all();
+//     $lingkungan = [];
+//     // $nilai = [];
+//     foreach ($kepalas as $item) {
+//         $lingkungan[] = $item->nama_lingkungan;
+//     }
 
-    return view('home', [
-        'title' => 'Sistem Informasi Layanan Administrasi Kependudukan',
-        'lingkungan' => $lingkungan
-    ]);
-});
+//     // if ($lingkungan == 'Lingkungan 1') {
+//     //     $lingkungan->count();
+//     // }
+//     // dd(count($lingkungan)); 
+//     dd(json_encode($lingkungan));
+
+//     return view('home', [
+//         'title' => 'Sistem Informasi Layanan Administrasi Kependudukan',
+//         'lingkungan' => $lingkungan
+//     ]);
+// });
+Route::get('/', [Controller::class, 'index']);
 
 Route::resource('/dashboard/user', UserController::class)->middleware('is_admin');
 Route::resource('/dashboard/kepala', KepalaController::class);

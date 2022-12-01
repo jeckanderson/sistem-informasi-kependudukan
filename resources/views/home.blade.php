@@ -389,8 +389,8 @@
         },
         series: [{
             name: 'Jumlah',
-            data: [13.93, 13.63, 13.73, 13.67]
-            // data: {!! json_encode($lingkungan) !!}
+            // data: [13.93, 13.63, 13.73, 13.67]
+            data: {!! json_encode($lingkungan) !!}
         }]
     });
 </script>
