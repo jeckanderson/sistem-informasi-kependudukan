@@ -23,7 +23,7 @@
                             <i class="fas fa-plus-circle"></i> Tambah Data Kelahiran
                         </a>
                         @endcan
-                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-info float-end rounded-pill" title="Cetak Data Kelahiran">
+                        <a href="/kelahiran/print_pdf" type="button" class="btn btn-sm btn-info float-end rounded-pill" title="Cetak Data Kelahiran">
                             <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>
@@ -85,7 +85,7 @@
                                 <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm mb-1 rounded-pill" onclick="return confirm('Anda akan menghapus {{ $item->nama }}, yakin?')" title="Hapus Data Kelahiran {{ $item->nama }}"><i class="fas fa-times-circle"></i></button>
                             </form>
                             @endcan
-                            <a href="/dashboard/kelahiran/{{ $item->id_kelahiran }}/edit" class="btn btn-sm btn-info rounded-pill" title="Print Data Kelahiran {{ $item->nama }}"><i class="fas fa-print"></i></a>
+                            <a href="/kelahiran/print_kel/{{ $item->id_kelahiran }}" class="btn btn-sm btn-info rounded-pill" title="Print Data Kelahiran {{ $item->nama }}"><i class="fas fa-print"></i></a>
                         </td>
                     </tr>
                     @endforeach

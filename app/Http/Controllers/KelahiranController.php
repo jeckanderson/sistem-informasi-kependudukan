@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelahiran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \PDF;
 
 class KelahiranController extends Controller
 {
@@ -188,5 +189,31 @@ class KelahiranController extends Controller
         Kelahiran::destroy($kelahiran->id_kelahiran);
         // kembalikan ke halaman product
         return redirect('/dashboard/kelahiran')->with('success', 'Data Kelahiran Berhasil di Hapus!');
+    }
+
+    public function cetak_kel()
+    {
+        $kelahiran = Kelahiran::latest()->get();
+
+        $pdf = PDF::loadview('dashboard.kelahiran.printpdf', [
+            'printpdf' => $kelahiran
+        ])
+            ->setpaper('A3', 'landscape');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('laporan_kelahiran.pdf');
+    }
+
+    public function cetak_detail($id)
+    {
+        $det_lahir = Kelahiran::where('id_kelahiran', $id)->get();
+
+        $pdf = PDF::loadview('dashboard.kelahiran.cetakdetail', [
+            'det_lahir' => $det_lahir
+        ])
+            ->setpaper('A4', 'portrait');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('cetak_detail_kelahiran.pdf');
     }
 }

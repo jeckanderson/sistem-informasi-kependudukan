@@ -56,6 +56,8 @@ Route::get('/kepala/print_pdf/{nomor_kk}', [KepalaController::class, 'printpdf']
 Route::resource('/dashboard/penduduk', PendudukController::class);
 Route::get('/penduduk/print_pdf', [PendudukController::class, 'printpdf']);
 Route::resource('/dashboard/kelahiran', KelahiranController::class);
+Route::get('/kelahiran/print_pdf', [KelahiranController::class, 'cetak_kel']);
+Route::get('/kelahiran/print_kel/{id}', [KelahiranController::class, 'cetak_detail']);
 Route::resource('/dashboard/pendatang', PendatangController::class);
 Route::resource('/dashboard/pindah', PindahController::class);
 Route::resource('/dashboard/kematian', KematianController::class);
