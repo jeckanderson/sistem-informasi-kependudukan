@@ -22,7 +22,7 @@
                 <th>No KK</th>
                 <th>Jender</th>
                 <th>Status</th>
-                <th>Relasi</th>
+                <th>SDHRT</th>
                 <th>TTL</th>
                 <th>Agama</th>
                 <th>Pendidikan</th>

@@ -8,7 +8,7 @@
         </div>
     @endif
     <div class="col-lg-12 text-center">
-        <a href="dashboard/kepala/print_pdf" title="Print Data Anggota Keluarga"><i class="fas fa-print"></i> Print PDF</a>
+        <a href="/kepala/print_pdf/{{ $data[0]->nomor_kk }}" title="Print Data Anggota Keluarga"><i class="fas fa-print"></i> Print PDF</a>
         <h3 class="mt-3">DATA ANGGOTA KELUARGA</h3>
         <h6>NOMOR: {{ $data[0]->nomor_kk }} </h6>
     </div>

@@ -6,6 +6,7 @@ use App\Models\Kepala;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \PDF;
 
 use function GuzzleHttp\Promise\queue;
 
@@ -236,13 +237,15 @@ class KepalaController extends Controller
         return redirect('/dashboard/kepala')->with('success', 'Data Anggota Keluarga diTambahkan!');
     }
 
-    public function printpdf()
+    public function printpdf(Request $request)
     {
         $anggota = DB::table('penduduks')
             ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
             ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
-            ->select('penduduks.*', 'kematians.id_kematian', 'pindahs.id_pindah')
-            ->latest()->get();
+            ->leftjoin('kepalas', 'kepalas.nomor_kk', '=', 'penduduks.nomor_kk')
+            ->where('penduduks.nomor_kk', '=', $request->nomor_kk)
+            ->select('penduduks.*', 'kepalas.*', 'kematians.*', 'pindahs.*', 'kematians.nik', 'pindahs.nik', 'penduduks.nik')
+            ->get();
 
         $pdf = PDF::loadview('dashboard.kepala.printpdf', [
             'printpdf' => $anggota

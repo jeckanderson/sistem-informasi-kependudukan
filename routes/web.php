@@ -52,7 +52,7 @@ Route::resource('/dashboard/kepala', KepalaController::class);
 Route::get('/dashboard/kepala/inputak/{no_kk}', [KepalaController::class, 'inputak']);
 Route::post('/dashboard/kepala/insert', [KepalaController::class, 'insert']);
 Route::post('/dashboard/kepala/updateak/{no_kk}', [KepalaController::class, 'updateak']);
-Route::get('/dashboard/kepala/print_pdf', [KepalaController::class, 'printpdf']);
+Route::get('/kepala/print_pdf/{nomor_kk}', [KepalaController::class, 'printpdf']);
 Route::resource('/dashboard/penduduk', PendudukController::class);
 Route::get('/penduduk/print_pdf', [PendudukController::class, 'printpdf']);
 Route::resource('/dashboard/kelahiran', KelahiranController::class);

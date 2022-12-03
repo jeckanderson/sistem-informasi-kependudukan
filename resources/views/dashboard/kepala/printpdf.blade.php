@@ -11,32 +11,52 @@
             </hr>
         </div>
         
-        <h3 style="text-align: center; padding-top: 6px;">LAPORAN DATA PENDUDUK</h3>
+        <h3 style="text-align: center; padding-top: 6px;">DATA ANGGOTA KELUARGA</h3>
+        <h4 style="text-align: center; padding: 0; margin: 0;">NOMOR: {{ $printpdf[0]->nomor_kk }}</h4>
+
+        <table>
+            <tr>
+                <td>Pemerintahan Kab/Kota</td>
+                <td>: &nbsp;&nbsp;</td>
+                <td>Kalabahi</td>
+            </tr>
+            <tr>
+                <td>Kecamatan</td>
+                <td>: &nbsp;&nbsp;</td>
+                <td>Teluk Mutiara</td>
+            </tr>
+            <tr>
+                <td>Desa/Kelurahan</td>
+                <td>: &nbsp;&nbsp;</td>
+                <td>Welai Timur</td>
+            </tr>
+            <tr>
+                <td>Kode Pos</td>
+                <td>: &nbsp;&nbsp;</td>
+                <td>85817</td>
+            </tr>
+        </table>
 
         @if($printpdf->count())
         <table cellpadding="10" cellspacing="0" border="1" style="font-size: 16px; padding-top: 20px; width: 100%;">
             <tr style="background-color: #fbbf24">
                 <th>No</th>
-                <th>Nama</th>
+                <th>Nama Lengkap</th>
                 <th>NIK</th>
-                <th>No KK</th>
                 <th>Jender</th>
-                <th>Status</th>
-                <th>Relasi</th>
+                <th>SHDRT</th>
                 <th>TTL</th>
                 <th>Agama</th>
                 <th>Pendidikan</th>
                 <th>Pekerjaan</th>
                 <th>Keterangan</th>
             </tr>
-            @foreach ($anggota as $item)
+            @foreach ($printpdf as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->nama_lengkap }}</td>
                     <td>{{ $item->nik }}</td>
-                    <td>{{ $item->nomor_kk }}</td>
                     <td>{{ $item->jender }}</td>
-                    <td>{{ $item->status_nikah }}</td>
                     <td>{{ $item->relasi }}</td>
                     <td>{{ date("d F Y", strtotime($item->tanggal_lahir)) }}</td>
                     <td>{{ $item->agama }}</td>
@@ -47,7 +67,7 @@
                     @elseif(!empty($item->id_pindah))
                         <td><p class="bg-info text-white text-center">Pindah</p></td>
                     @else
-                        <td> </td>
+                        <td>-</td>
                     @endif
                 </tr>
             @endforeach
@@ -55,11 +75,40 @@
         @else
             <h5 class="bg-danger text-white text-center">Data Penduduk tidak ditemukan</h5>
         @endif
-
         @php
-        $tanggal = gmdate("d-m-Y",time());
+            $tanggal = gmdate("d-m-Y",time());
         @endphp
-        <div class="col-md-12" style="margin-left: 85%; font-size: 16px; padding-top: 30px">
+       <div class="col-md-6">
+            <table style="font-size: 16px; padding-top: 20px; float: left;">
+                <tr>
+                    <td>Dikeluarkan Tanggal</td>
+                    <td>: &nbsp;&nbsp;</td>
+                    <td>{{ $tanggal }}</td>
+                </tr>
+                <tr>
+                    <td>LEMBAR</td>
+                    <td>: &nbsp;&nbsp;</td>
+                    <td>I. Kepala Keluarga</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>: &nbsp;&nbsp;</td>
+                    <td>II. RT</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>: &nbsp;&nbsp;</td>
+                    <td>III. Desa/Kelurahan</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>: &nbsp;&nbsp;</td>
+                    <td>IV. Kecamatan</td>
+                </tr>
+            </table>
+       </div>
+        
+        <div class="col-md-6" style="position: absolute; font-size: 16px; padding-top: 20px; float: right;">
             <div>Kalabahi, {{ $tanggal }}</div>
             <div style="padding-left: 30px">Kepala Desa</div><br><br><br>
             <div>Johanis Dolu, S.Psi.</div>
