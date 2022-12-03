@@ -22,7 +22,7 @@
                             <h5>Jumlah Data Penduduk ({{ $penduduk->count() }})</h5>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
-                            <a href="/dashboard/penduduk/print" title="Print Data Penduduk" class="btn btn-sm btn-success rounded-pill" target="_BLANK"><i class="fas fa-print"></i> Print PDF</a>
+                            <a href="/penduduk/print_pdf" title="Print Data Penduduk" class="btn btn-sm btn-success rounded-pill" target="_BLANK"><i class="fas fa-print"></i> Print PDF</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <td>{{ $item->pendidikan }}</td>
                             <td>{{ $item->pekerjaan }}</td>
                             @if(!empty($item->id_kematian))
-                                <td><p class="bg-danger text-white text-center">Ninggal</p></td>
+                                <td><p class="bg-danger text-white text-center">Meninggal</p></td>
                             @elseif(!empty($item->id_pindah))
                                 <td><p class="bg-info text-white text-center">Pindah</p></td>
                             @else

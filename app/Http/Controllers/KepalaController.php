@@ -235,4 +235,21 @@ class KepalaController extends Controller
 
         return redirect('/dashboard/kepala')->with('success', 'Data Anggota Keluarga diTambahkan!');
     }
+
+    public function printpdf()
+    {
+        $anggota = DB::table('penduduks')
+            ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
+            ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
+            ->select('penduduks.*', 'kematians.id_kematian', 'pindahs.id_pindah')
+            ->latest()->get();
+
+        $pdf = PDF::loadview('dashboard.kepala.printpdf', [
+            'printpdf' => $anggota
+        ])
+            ->setpaper('A3', 'landscape');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('laporan_keluarga.pdf');
+    }
 }

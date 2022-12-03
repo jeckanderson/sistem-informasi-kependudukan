@@ -8,7 +8,7 @@
         </div>
     @endif
     <div class="col-lg-12 text-center">
-        <a href="#" title="Print Data Anggota Keluarga" class="btn btn-sm btn-info rounded-pill"><i class="fas fa-print"></i> Print PDF</a>
+        <a href="dashboard/kepala/print_pdf" title="Print Data Anggota Keluarga"><i class="fas fa-print"></i> Print PDF</a>
         <h3 class="mt-3">DATA ANGGOTA KELUARGA</h3>
         <h6>NOMOR: {{ $data[0]->nomor_kk }} </h6>
     </div>
@@ -103,7 +103,7 @@
                     <td>{{ $item->pekerjaan }}</td>
                     <td>{{ date("d F Y", strtotime($item->tanggal_lahir)) }}</td>
                     @if(!empty($item->id_kematian))
-                        <td><p class="bg-danger text-white text-center">Ninggal</p></td>
+                        <td><p class="bg-danger text-white text-center">Meninggal</p></td>
                     @elseif(!empty($item->id_pindah))
                         <td><p class="bg-info text-white text-center">Pindah</p></td>
                     @else

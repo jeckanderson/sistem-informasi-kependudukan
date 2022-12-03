@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \PDF;
 
 class PendudukController extends Controller
 {
@@ -159,8 +160,20 @@ class PendudukController extends Controller
         return redirect('/dashboard/kepala/show')->with('success', 'data anggota keluarga berhasil di hapus');
     }
 
-    public function print()
+    public function printpdf()
     {
-        return view('dashboard.penduduk.printpdf');
+        $penduduk = DB::table('penduduks')
+            ->leftjoin('kematians', 'penduduks.nik', '=', 'kematians.nik')
+            ->leftjoin('pindahs', 'penduduks.nik', '=', 'pindahs.nik')
+            ->select('penduduks.*', 'kematians.id_kematian', 'pindahs.id_pindah')
+            ->latest()->get();
+
+        $pdf = PDF::loadview('dashboard.penduduk.printpdf', [
+            'printpdf' => $penduduk
+        ])
+            ->setpaper('A3', 'landscape');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('laporan_penduduk.pdf');
     }
 }

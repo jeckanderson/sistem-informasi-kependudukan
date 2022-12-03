@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelahiran;
 use App\Models\Kematian;
 use App\Models\Pendatang;
 use App\Models\Penduduk;
@@ -21,6 +22,7 @@ class DashboardController extends Controller
         $pindah = Pindah::all();
         $kematian = Kematian::all();
         $pendatang = Pendatang::all();
+        $kelahiran = Kelahiran::all();
 
         return view('dashboard.index', [
             'title' => 'Dashboard',
@@ -28,6 +30,7 @@ class DashboardController extends Controller
             'pindah' => $pindah,
             'kematian' => $kematian,
             'pendatang' => $pendatang,
+            'kelahiran' => $kelahiran,
         ]);
     }
 }

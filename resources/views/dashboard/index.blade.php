@@ -106,15 +106,39 @@
                 </div>
             </div>
         </div>
+
+         <!-- Pending Requests Card Example -->
+         <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Data Kelahiran
+                            </div>
+                        </div>
+                        <div class="col-auto fs-5">
+                            {{ $kelahiran->count() }}
+                        </div>
+                    </div>
+                    <a href="/dashboard/kelahiran" class="mt-2 d-block">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Content Row -->
     <div class="card mb-5">
         <div class="card-header text-white" style="background: #495C83">
-            <h5>Grafik Penjualan Bulanan</h5>
+            <h6>Jumlah Penduduk Berdasarkan Jenis Kelamin</h6>
         </div>
         <div class="card-body">
             <div id="grafik">
-
+                
             </div>
         </div>
     </div>

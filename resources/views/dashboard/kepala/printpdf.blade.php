@@ -29,7 +29,7 @@
                 <th>Pekerjaan</th>
                 <th>Keterangan</th>
             </tr>
-            @foreach ($printpdf as $item)
+            @foreach ($anggota as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->nama_lengkap }}</td>
