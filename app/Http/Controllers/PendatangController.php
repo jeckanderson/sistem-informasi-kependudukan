@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pendatang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \PDF;
 
 class PendatangController extends Controller
 {
@@ -152,5 +153,19 @@ class PendatangController extends Controller
     {
         Pendatang::destroy($pendatang->id_pendatang);
         return redirect('/dashboard/pendatang')->with('success', 'Data pendatang di hapus');
+    }
+
+    public function cetaklap()
+    {
+        $datang = DB::table('pendatangs')
+            ->leftJoin('penduduks', 'pendatangs.nik', '=', 'penduduks.nik')->get();
+
+        $pdf = PDF::loadview('dashboard.pendatang.cetaklap', [
+            'cetaklap' => $datang
+        ])
+            ->setpaper('A3', 'portrait');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('laporan_pendatang.pdf');
     }
 }

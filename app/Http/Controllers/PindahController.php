@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pindah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \PDF;
 
 class PindahController extends Controller
 {
@@ -149,5 +150,21 @@ class PindahController extends Controller
     {
         Pindah::destroy($pindah->id_pindah);
         return redirect('/dashboard/pindah')->with('success', 'Data pindah penduduk di hapus');
+    }
+
+
+    public function cetaklap()
+    {
+        $pindah = DB::table('pindahs')
+            ->leftJoin('penduduks', 'pindahs.nik', '=', 'penduduks.nik')
+            ->orderBy('id_pindah', 'desc')->get();
+
+        $pdf = PDF::loadview('dashboard.pindah.cetaklap', [
+            'cetaklap' => $pindah
+        ])
+            ->setpaper('A3', 'portrait');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('laporan_pindah.pdf');
     }
 }

@@ -11,11 +11,6 @@
             </div>
 
         <table style="font-size: 16px; padding-top: 20px;">
-            <tr style="font-weight: bold;">
-                <td>Nomor</td>
-                <td>&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->id_kelahiran }}</td>
-            </tr>
             <tr>
                 <td>Pemerintahan Kab/Kota</td>
                 <td>&nbsp;&nbsp;:</td>
@@ -33,56 +28,58 @@
             </tr>
         </table>
         
-        <h4 style="text-align: center; padding-top: 10px; font-weight: none;">UNTUK YANG BERSANGKUTAN<br><div style="font-weight: bold;">SURAT KETERANGAN KELAHIRAN</div></h4>
-        <div style="text-align: center; margin-top: 6px;">No. Akta : {{ $det_lahir[0]->no_akte }}</div>
+        <h4 style="text-align: center; padding-top: 10px; font-weight: none;">UNTUK YANG BERSANGKUTAN<br><div style="font-weight: bold;">SURAT KETERANGAN KEMATIAN</div></h4>
+        <div style="text-align: center; margin-top: 6px;">Nomor : {{ $cetaksurat[0]->id_kematian }}</div>
 
         <h4 style="font-weight: bold;">Yang bertanda tangan dibawah ini menerangkan bahwa :</h4>
         <table style="padding: 0; margin-left: 12px;">
             <tr>
-                <td>Hari</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->hari_lahir }}</td>
-            </tr>
-            <tr>
-                <td>Tempat & Tanggal Lahir</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->TTL }}</td>
-            </tr>
-        </table>
-        <h4 style="font-weight: bold;">Telah lahir seorang bayi :</h4>
-        <table style="padding: 0; margin-left: 12px;">
-            <tr>
-                <td>Nama</td>
+                <td>Nama Lengkap</td>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->nama }}</td>
+                <td>{{ $cetaksurat[0]->nama_lengkap }}</td>
+            </tr>
+            <tr>
+                <td>NIK</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+                <td>{{ $cetaksurat[0]->nik }}</td>
             </tr>
             <tr>
                 <td>Jenis Kelamin</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </td>
-                <td>{{ $det_lahir[0]->jender }}</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+                <td>{{ $cetaksurat[0]->jender }}</td>
             </tr>
             <tr>
-                <td>Berat Badan</td>
+                <td>Tempat & Tanggal Lahir</td>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->berat }}</td>
+                <td>{{ date("d F Y", strtotime($cetaksurat[0]->tanggal_lahir)) }}</td>
+            </tr>
+            <tr>
+                <td>Agama</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+                <td>{{ $cetaksurat[0]->agama }}</td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+                <td>-</td>
             </tr>
         </table>
-        <h4 style="font-weight: bold;">Dari orang tua :</h4>
+        <h4 style="font-weight: bold;">Telah meninggal dunia pada :</h4>
         <table style="padding: 0; margin-left: 12px;">
             <tr>
-                <td>Nama Ayah</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->nama_ayah }}</td>
+                <td>Tanggal</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+                <td>{{ date("d F Y", strtotime($cetaksurat[0]->tgl_meninggal)) }}</td>
             </tr>
             <tr>
-                <td>Nama Ibu</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->nama_ibu }}</td>
+                <td>Bertempat di</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+                <td>{{ $cetaksurat[0]->tempat_meninggal }}</td>
             </tr>
             <tr>
-                <td>Lingkungan</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-                <td>{{ $det_lahir[0]->lingkungan }}</td>
+                <td>Penyebab Kematian</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+                <td>{{ $cetaksurat[0]->sebab }}</td>
             </tr>
         </table>
         <h4>Surat keterangan ini dibuat atas dasar yang sebenarnya.</h4>

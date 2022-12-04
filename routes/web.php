@@ -59,8 +59,12 @@ Route::resource('/dashboard/kelahiran', KelahiranController::class);
 Route::get('/kelahiran/print_pdf', [KelahiranController::class, 'cetak_kel']);
 Route::get('/kelahiran/print_kel/{id}', [KelahiranController::class, 'cetak_detail']);
 Route::resource('/dashboard/pendatang', PendatangController::class);
+Route::get('/pendatang/cetaklaporan', [PendatangController::class, 'cetaklap']);
 Route::resource('/dashboard/pindah', PindahController::class);
+Route::get('/pindah/cetaklaporan', [PindahController::class, 'cetaklap']);
 Route::resource('/dashboard/kematian', KematianController::class);
+Route::get('/kematian/cetaklaporan', [KematianController::class, 'cetaklap']);
+Route::get('/kematian/cetaksurat/{id_kematian}', [KematianController::class, 'cetaksurat']);
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

@@ -63,8 +63,12 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
+                                <label for="tempat_lahir" class="form-label text-danger">Tempat Lahir</label>
+                                <input type="text" class="form-control  @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" id="tempat_lahir" value="{{ old('tempat_lahir') }}" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="tanggal_lahir" class="form-label text-danger">Tanggal Lahir</label>
-                                <input type="date" class="form-control  @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" id="no_kk" value="{{ old('tanggal_lahir', $data->tanggal_lahir) }}" required>
+                                <input type="date" class="form-control  @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" id="tanggal_lahir" value="{{ old('tanggal_lahir', $data->tanggal_lahir) }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="agama" class="form-label text-danger">Agama</label>

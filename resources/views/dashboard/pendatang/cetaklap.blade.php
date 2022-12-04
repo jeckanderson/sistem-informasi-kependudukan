@@ -11,44 +11,40 @@
             </hr>
         </div>
         
-        <h3 style="text-align: center; padding-top: 6px;">LAPORAN DATA KELAHIRAN</h3>
+        <h3 style="text-align: center; padding-top: 6px;">LAPORAN DATA PENDATANG</h3>
 
-        @if($printpdf->count())
+        @if($cetaklap->count())
         <table cellpadding="10" cellspacing="0" border="1" style="font-size: 16px; padding-top: 20px; width: 100%;">
             <tr style="background-color: #fbbf24">
                 <th>No</th>
-                <th>Nomor Akte</th>
-                <th>Nama Bayi</th>
-                <th>Tempat & Tanggal Lahir</th>
+                <th>Nama Lengkap</th>
+                <th>NIK</th>
                 <th>Jender</th>
-                <th>Berat Badan</th>
-                <th>Tempat Bersalin</th>
-                <th>Penolong Lahir</th>
-                <th>Nama Ayah</th>
-                <th>Nama Ibu</th>
+                <th>Tempat Tanggal Lahir</th>
+                <th>Tanggal Datang</th>
+                <th>Alamat Asal</th>
+                <th>Alamat Tujuan</th>
             </tr>
-            @foreach ($printpdf as $item)
+            @foreach ($cetaklap as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->no_akte }}</td>
-                    <td>{{ $item->nama }}</td>
-                    <td>{{ $item->TTL }}</td>
+                    <td>{{ $item->nama_lengkap }}</td>
+                    <td>{{ $item->nik }}</td>
                     <td>{{ $item->jender }}</td>
-                    <td>{{ $item->berat }}</td>
-                    <td>{{ $item->tempat_bersalin }}</td>
-                    <td>{{ $item->penolong_lahir }}</td>
-                    <td>{{ $item->nama_ayah }}</td>
-                    <td>{{ $item->nama_ibu }}</td>
+                    <td>{{ date("d F Y", strtotime($item->tanggal_lahir)) }}</td>
+                    <td>{{ $item->tgl_datang }}</td>
+                    <td>{{ $item->alamat_asal }}</td>
+                    <td>{{ $item->alamat_tujuan }}</td>
                 </tr>
             @endforeach
         </table>
         @else
-            <h5 class="bg-danger text-white text-center">Data Kelahiran tidak ditemukan</h5>
+            <h5 class="bg-danger text-white text-center">Data Pendatang tidak ditemukan</h5>
         @endif
+
         @php
-            $tanggal = gmdate("d-m-Y",time());
+        $tanggal = gmdate("d-m-Y",time());
         @endphp
-        
         <div class="col-md-12" style="margin-left: 85%; font-size: 16px; padding-top: 30px">
             <div>Kalabahi, {{ $tanggal }}</div>
             <div style="padding-left: 30px">Kepala Desa</div><br><br><br>

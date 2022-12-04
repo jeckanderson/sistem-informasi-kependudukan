@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 mb-5">
         <div class="card">
             <div class="card-header text-white" style="background: #075985;">
                 <h6><i class="fas fa-plus-circle"></i> Tambah Data Anggota Keluarga</h6>
@@ -71,7 +71,6 @@
                                     <option value="Keponakan" {{ old('relasi') == 'Keponakan' ? 'selected=selected' : '' }}>Keponakan</option>
                                     <option value="Lain-lain" {{ old('relasi') == 'Lain-lain' ? 'selected=selected' : '' }}>Lain-lain</option>
                                   </select>
-                                {{-- <input type="text" class="form-control  @error('relasi') is-invalid @enderror" name="relasi" id="relasi"> --}}
                                 @error('relasi')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -81,8 +80,17 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
+                                <label for="tempat_lahir" class="form-label text-danger">Tempat Lahir</label>
+                                <input type="text" class="form-control  @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" id="tempat_lahir" value="{{ old('tempat_lahir') }}" placeholder="Nama Kota">
+                                @error('tempat_lahir')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label for="tanggal_lahir" class="form-label text-danger">Tanggal Lahir</label>
-                                <input type="date" class="form-control  @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" id="no_kk" value="{{ old('tanggal_lahir') }}" required>
+                                <input type="date" class="form-control  @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" id="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
                                 @error('tanggal_lahir')
                                     <div class="invalid-feedback">
                                         {{ $message }}

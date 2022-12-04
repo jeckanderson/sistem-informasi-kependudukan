@@ -23,7 +23,7 @@
                             <i class="fas fa-plus-circle"></i> Tambah Data Kematian
                         </a>
                         @endcan
-                        <a href="/dashboard/kematian/create" type="button" class="btn btn-sm btn-info float-end rounded-pill">
+                        <a href="/kematian/cetaklaporan" type="button" class="btn btn-sm btn-info float-end rounded-pill">
                             <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>
@@ -75,7 +75,7 @@
                                 <button class="btn btn-sm btn-danger text-white border-0 delete hapus-confirm rounded-pill" onclick="return confirm('Anda akan menghapus {{ $data->nama_lengkap }}, yakin?')"><i class="fas fa-times-circle"></i></button>
                             </form>
                             @endcan
-                            <a href="/dashboard/kematian/{{ $data->id_kematian }}" title="Cetak Surat" class="btn btn-sm btn-info rounded-pill" title="Print Data"><i class="fas fa-print"></i></a>
+                            <a href="/kematian/cetaksurat/{{ $data->id_kematian }}" title="Cetak Surat" class="btn btn-sm btn-info rounded-pill" title="Print Data"><i class="fas fa-print"></i></a>
                         </td>
                     </tr>
                     @endforeach

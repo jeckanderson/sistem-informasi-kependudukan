@@ -131,9 +131,15 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="lingkungan" class="form-label text-danger">Lingkungan</label>
-                                <input type="text" class="form-control @error('lingkungan') is-invalid @enderror" name="lingkungan" id="lingkungan" value="{{ old('lingkungan') }}" required>
-                                    @error('lingkungan')
+                                <label for="lingkungan" class="form-label">Lingkungan</label>
+                                <select class="form-select @error('lingkungan') is-invalid @enderror" name="lingkungan" id="lingkungan" required>
+                                    <option selected disabled value="">-Pilih Lingkungan-</option>
+                                    <option value="Lingkungan 1" {{ old('lingkungan') == 'Lingkungan 1' ? 'selected=selected' : '' }}>Lingkungan 1</option>
+                                    <option value="Lingkungan 2" {{ old('lingkungan') == 'Lingkungan 2' ? 'selected=selected' : '' }}>Lingkungan 2</option>
+                                    <option value="Lingkungan 3" {{ old('lingkungan') == 'Lingkungan 3' ? 'selected=selected' : '' }}>Lingkungan 3</option>
+                                    <option value="Lingkungan 4" {{ old('lingkungan') == 'Lingkungan 4' ? 'selected=selected' : '' }}>Lingkungan 4</option>
+                                  </select>
+                                @error('lingkungan')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

@@ -37,6 +37,7 @@ class PendudukController extends Controller
                 ->orWhere('status_nikah', 'like', '%' . request('search') . '%')
                 ->orWhere('relasi', 'like', '%' . request('search') . '%')
                 ->orWhere('agama', 'like', '%' . request('search') . '%')
+                ->orWhere('tempat_lahir', 'like', '%' . request('search') . '%')
                 ->orWhere('pendidikan', 'like', '%' . request('search') . '%')
                 ->orWhere('pekerjaan', 'like', '%' . request('search') . '%');
         }
@@ -77,6 +78,7 @@ class PendudukController extends Controller
             'jender' => 'required',
             'status_nikah' => 'required',
             'relasi' => 'required',
+            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
             'pendidikan' => 'required',
@@ -131,6 +133,7 @@ class PendudukController extends Controller
             'jender' => 'required',
             'status_nikah' => 'required',
             'relasi' => 'required',
+            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
             'pendidikan' => 'required',

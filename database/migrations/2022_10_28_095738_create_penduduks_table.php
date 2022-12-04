@@ -20,7 +20,7 @@ class CreatePenduduksTable extends Migration
             $table->enum('jender', ['L', 'P']);
             $table->enum('status_nikah', ['Menikah', 'Janda', 'Duda', 'Lajang', 'Tidak Menikah']);
             $table->enum('relasi', ['Suami', 'Istri', 'Anak Kandung', 'Anak Angkat', 'Keponakan', 'Lain-lain']);
-            // $table->string('tempat_lahir', 50);
+            $table->string('tempat_lahir', 100);
             $table->date('tanggal_lahir');
             $table->string('agama');
             // $table->enum('golongan_darah', ['A','B','AB','O']);

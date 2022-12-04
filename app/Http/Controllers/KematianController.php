@@ -6,6 +6,7 @@ use App\Models\Kematian;
 use App\Models\Pendatang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \PDF;
 
 class KematianController extends Controller
 {
@@ -27,8 +28,6 @@ class KematianController extends Controller
             // ->select('kepalas.*', 'kematians.nik', 'kepalas.nomor_kk')->get();
             // ->where('kepalas.nomor_kk', '=', 'kematians.nik')->get();
             ->orderBy('id_kematian', 'desc');
-        // var_dump($data);
-        // die;
 
         if (request('search')) {
             $data->where('nomor_kk', 'like', '%' . request('search') . '%')
@@ -154,5 +153,38 @@ class KematianController extends Controller
     {
         Kematian::destroy($kematian->id_kematian);
         return redirect('/dashboard/kematian')->with('success', 'Data Kematian di hapus');
+    }
+
+
+    public function cetaklap()
+    {
+        $ninggal = DB::table('kematians')
+            ->leftJoin('penduduks', 'kematians.nik', '=', 'penduduks.nik')
+            ->leftJoin('kepalas', 'kepalas.nomor_kk', '=', 'kematians.nik')
+            ->orderBy('id_kematian', 'desc')
+            ->get();
+
+        $pdf = PDF::loadview('dashboard.kematian.cetaklap', [
+            'cetaklap' => $ninggal
+        ])
+            ->setpaper('A3', 'portrait');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('laporan_kematian.pdf');
+    }
+
+    public function cetaksurat($id_kematian)
+    {
+        $cetaksurat = DB::table('kematians')
+            ->leftJoin('penduduks', 'kematians.nik', '=', 'penduduks.nik')
+            ->where('id_kematian', $id_kematian)->get();
+
+        $pdf = PDF::loadview('dashboard.kematian.cetaksurat', [
+            'cetaksurat' => $cetaksurat
+        ])
+            ->setpaper('A4', 'portrait');
+        Pdf::setOption(['dpi' => 150, 'defaultFont' => 'Arial']);
+
+        return $pdf->download('cetak_surat_kematian.pdf');
     }
 }

@@ -23,7 +23,7 @@
                             <i class="fas fa-plus-circle"></i> Tambah Data Pindah
                         </a>
                         @endcan
-                        <a href="/dashboard/kelahiran/create" type="button" class="btn btn-sm btn-info float-end rounded-pill">
+                        <a href="/pindah/cetaklaporan" type="button" class="btn btn-sm btn-info float-end rounded-pill">
                             <i class="fas fa-print"></i> Print PDF
                         </a>
                     </h5>

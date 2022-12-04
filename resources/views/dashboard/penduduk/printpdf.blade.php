@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-12">
         <div class="row">
-            <img src="assets/img/logo.jpg" alt="" style="position: absolute; width: 65px; height: auto; margin-left: 15%;">
+            <img src="assets/img/logo.jpg" alt="" style="position: absolute; width: 65px; height: auto; margin-left: 5%;">
             <div class="col-md-12">
                 <h3 style="padding: 0; margin: 0; text-align: center;">PEMERINTAH KABUPATEN ALOR<br> KECAMATAN TELUK MUTIARA<br> PEMERINTAH DESA WELAI TIMUR</h3>
                 <h4 style="padding: 0; margin: 0; text-align: center;">Jalan Eltari Nomor 02 Teluk Mutiara</h4>
                 <div style="margin-top: 9px;"></div>
-                <hr style="width: 80%;">
-                <hr style="width: 80%;">
+                <div style="border-bottom: 1px solid black; margin-bottom: 3px;"></div>
+                <div style="border-bottom: 1px solid black;"></div>
             </hr>
         </div>
         
