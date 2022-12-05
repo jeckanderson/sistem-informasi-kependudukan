@@ -131,17 +131,35 @@
             </div>
         </div>
     </div>
+
     <!-- Content Row -->
-    <div class="card mb-5">
-        <div class="card-header text-white" style="background: #495C83">
-            <h6>Jumlah Penduduk Berdasarkan Jenis Kelamin</h6>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card mb-5">
+                <div class="card-header text-white" style="background: #495C83">
+                    <h6>Jumlah Penduduk Berdasarkan Usia</h6>
+                </div>
+                <div class="card-body">
+                    <div id="grafik">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <div id="grafik">
-                
+        <div class="col-md-5">
+            <div class="card mb-5">
+                <div class="card-header text-white" style="background: #495C83">
+                    <h6>Jumlah Penduduk Berdasarkan Jenis Kelamin</h6>
+                </div>
+                <div class="card-body">
+                    <div id="grafik">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    
 
     {{-- <script src="{{ asset('templates/vendor/chart.js/highcharts.js') }}"></script> --}}
     {{-- <script type="text/javascript">

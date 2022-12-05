@@ -29,7 +29,7 @@ class LoginController extends Controller
                 // return redirect()->route('admin.index');
                 return redirect()->intended('/dashboard');
             } else {
-                return redirect()->intended('/pegawai');
+                return redirect()->intended('/dashboard');
             }
         } else {
             // kalau passwordnya gagal makan akan di arahkan ke halaman login lagi

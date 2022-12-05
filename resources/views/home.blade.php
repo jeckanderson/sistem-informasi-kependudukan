@@ -99,7 +99,7 @@
             <div class="col-md-6">
                <div class="row">
                     <div class="col-md-6">
-                        <h6>Kalender:</h5>
+                        {{-- <h6>Kalender:</h5>
                         <div class="tile double double-vertical">
                             <div class="calendar" data-role="calendar" data-start-mode="month"></div>
                         </div>
@@ -108,35 +108,71 @@
                             <div class="align-items-center">
                                 <div id="clock" class="fs-1"></div>
                             </div>
+                        </div> --}}
+                        <div class="card bg-success">
+                            <div class="card-header" style="background: #9796f0">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="month-picker" id="month-picker"> May </span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="year-picker d-flex" id="year-picker">
+                                            <span class="year-change px-1" id="pre-year">
+                                                <div><i class="fas fa-angle-double-left"></i></div>
+                                            </span>
+                                            <span id="year">2022</span>
+                                            <span class="year-change px-1" id="next-year">
+                                                <div><i class="fas fa-angle-double-right"></i></div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="calender-week-days d-flex">
+                                    <div>Sun</div>
+                                    <div>Mon</div>
+                                    <div>Tue</div>
+                                    <div>Wend</div>
+                                    <div>Thu</div>
+                                    <div>Fri</div>
+                                    <div>Sat</div>
+                                </div>
+                                <div class="calendar-days"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="day-text-formate fs-5">TODAY</div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="date-time-value" style="font-size: 14px">
+                                            {{-- <div class="time-formate">01:42:20</div> --}}
+                                            <div id="clock"></div>
+                                            <div class="date-formate">{{ date("d F Y", strtotime(gmdate('d-m-Y'))) }}</div>
+                                        </div>
+                                        <div class="month-list"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        {{-- <script>
-                            setInterval(() => {
-                                let date = new Date()
-                                let clock = document.getElementById('clock')
-                                clock.innerHTML =
-                                    date.getHours()+":"+
-                                    date.getMinutes()+":"+
-                                    date.getSeconds()
-                            }, 1000);
-                        </script> --}}
-                        {{-- <div class="times" id="datepicker" data-role="times" data-style-background="bg-red" data-style-foreground="fg-white" data-style-divider="fg-white" style="font-size: 30px"></div> --}}
                     </div>
                     
                     <div class="col-md-6">
                         <a href="" class="text-decoration-none d-block mb-4" data-bs-toggle="modal" data-bs-target="#pembuatanKK">
                             <div class="card bg-danger text-center d-block">
-                                <i class="fas fa-clone text-white py-2 mb-3" style="font-size: 40px"></i>
+                                <i class="fas fa-file-alt text-white py-2 mb-3" style="font-size: 40px"></i>
                                 <div class="align-items-center">
                                     <div class="text-center rounded-bottom text-white" style="background-color: rgba(0, 0, 0, 0.5)">Pembuatan Kartu Keluarga</div>
                                 </div>
                             </div>
                         </a>
                         
-                        <a href="" class="text-decoration-none d-block mb-2">
+                        <a href="" class="text-decoration-none d-block mb-2" data-bs-toggle="modal" data-bs-target="#pembuatanAkte">
                             <div class="card bg-info text-center d-block">
-                                <i class="fas fa-id-card-alt text-white py-2 mb-3" style="font-size: 40px"></i>
+                                <i class="fas fa-file-alt text-white py-2 mb-3" style="font-size: 40px"></i>
                                 <div class="align-items-center">
-                                    <div class="text-center rounded-bottom text-white" style="background-color: rgba(0, 0, 0, 0.5)">Pembuatan Kartu Keluarga</div>
+                                    <div class="text-center rounded-bottom text-white" style="background-color: rgba(0, 0, 0, 0.5)">Pembuatan Akte Kelahiran</div>
                                 </div>
                             </div>
                         </a>
@@ -204,24 +240,23 @@
                 5. Kutipan akta kelahiran<br><br>
             </div>
 
-            <div class="ktp-hilang/rusak">
-                <div class="text-danger">- Persyaratan Pembuatan KTP Karena Hilang/Rusak:</div>
-                1. Surat keterangan kehilangan dari kepolisian atau KTP yang rusak<br>
-                2. Foto copy KK (Kartu Keluarga)<br>
-                3. Paspor dan izin tinggal tetap bagi WNA<br><br>
+            <div class="pindah-kabupaten">
+                <div class="text-danger">- Persyarat mengurus surat keterangan pindah antar Kabupaten:</div>
+                1. Surat Pengantar RT Domisili<br>
+                2. Kartu Keluarga Asli<br>
+                3. Kartu Keluarga Asli (KK yang ditumpangi apabila menumpang)<br>
+                4. Surat Keterangan Pindah Datang dari Kantor Disdukcapil Daerah Pindah Datang<br>
+                5. Fotocopy Surat Nikah/Akta Perkawinan<br>
+                6. Fotocopy Akta Kelahiran/Ijazah<br>
+                7. Fotocopy KTP EL Asli<br>
+                8. Mengisi Formulir F-1.21<br><br>
             </div>
 
-            <div class="ktp-pindah">
-                <div class="text-danger">- Persyaratan Pembuatan KTP Karena Pindah/Datang:</div>
-                1. SKP (Surat Keterangan Pindah)/SKPD (Surat Keterangan Pindah Datang)<br>
-                2. SKDLN bagi WNI yang datang dari luar negeri karena pindah<br><br>
-            </div>
-
-            <div class="ktp-perpanjang">
-                <div class="text-danger">- Persyaratan Pembuatan KTP Karena Perpanjangan:</div>
-                1. Foto copy KK(Kartu Keluarga)<br>
-                2. KTP lama<br>
-                3. Paspor, izin tinggal tetap, dan SKCK bagi WNA
+            <div class="pindah-provinis">
+                <div class="text-danger">- Persyarat mengurus surat keterangan pindah antar Provinsi:</div>
+                1. Kartu Tanda Penduduk (KTP))<br>
+                2. Kartu Keluarga(KK)<br>
+                3. Formulir pendaftaran perpindahan penduduk dari Disdukcapil daerah asal(KK)<br><br>
             </div>
         </div>
         <div class="modal-footer">
@@ -304,7 +339,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel"><i class="fas fa-clone"></i> Persyaratan KK (Kartu Keluarga)</h6>
+          <h6 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Persyaratan KK (Kartu Keluarga)</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -332,6 +367,40 @@
                 1. Kartu Keluarga lama (asli)<br>
                 2. Surat Keterangan Kematian dari kelurahan atau akta kematian<br>
                 2. Surat keterangan pindah
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{-- ALUR PEMBUATAN AKTE KELAHIRAN --}}
+  <div class="modal fade" id="pembuatanAkte" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Persyaratan Akte Kelahiran</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="akte-baru">
+                <div class="text-danger">- Persyaratan Pembuatan Akte Kelahiran:</div>
+                1. Formulir Permohonan<br>
+                2. Surat Keterangan Lahir dari Dokter/Bidan/Penolong Kelahiran (asli)<br>
+                3. Fotokopi KTP-El orang tua (Pelapor adalah ayah atau ibu kandung)<br>
+                4. Fotokopi KTP-El dua orang saksi<br>
+                5. Surat Kuasa dari orang tua kandung apabila pelapor dikuasakan, disertai fokopi KTP-El penerima kuasa<br><br>
+            </div>
+
+            <div class="surat-kelahiran">
+                <div class="text-danger">- Persyaratan Pembuatan Surat Kelahiran:</div>
+                1. Surat Pengantar RT/RW<br>
+                2. Fotocopy Surat dari Bidan/Rumah Sakit<br>
+                3. Fotocopy Kartu Keluarga<br>
+                4. Fotocopy KTP Orangtua<br>
+                5. Mengisi Blangko Kelahiran (F2.02)<br><br>
             </div>
         </div>
         <div class="modal-footer">

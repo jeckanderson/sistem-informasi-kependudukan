@@ -45,7 +45,7 @@
                     <th scope="col">Nama Lingkungan</th>
                     <th scope="col">Kode RW</th>
                     <th scope="col">Kode RT</th>
-                    <th scope="col">Ket-</th>
+                    <th scope="col">Alamat</th>
                     <th scope="col" class="text-center">Aksi</th>
                 </tr>
             </thead>
