@@ -14,10 +14,10 @@ class Controller extends BaseController
 
     public function index()
     {
-        $kepalas = Kepala::where('nama_lingkungan', 'Lingkungan 1', 'Lingkungan 2')->count();
-        // Usermeta::groupBy('browser')->get();
-        // var_dump($kepalas);
-        // die;
+        $link1 = Kepala::where('nama_lingkungan', 'Lingkungan 1')->count();
+        $link2 = Kepala::where('nama_lingkungan', 'Lingkungan 2')->count();
+        $link3 = Kepala::where('nama_lingkungan', 'Lingkungan 3')->count();
+        $link4 = Kepala::where('nama_lingkungan', 'Lingkungan 4')->count();
 
         $kepalas = Kepala::all();
         $lingkungan = [];
@@ -26,11 +26,13 @@ class Controller extends BaseController
             $lingkungan[] = $item->nama_lingkungan;
         }
 
-        // dd(($lingkungan));
-
         return view('home', [
             'title' => 'Sistem Informasi Layanan Administrasi Kependudukan',
-            'lingkungan' => $lingkungan
+            'lingkungan' => $lingkungan,
+            'link1' => $link1,
+            'link2' => $link2,
+            'link3' => $link3,
+            'link4' => $link4,
         ]);
     }
 }

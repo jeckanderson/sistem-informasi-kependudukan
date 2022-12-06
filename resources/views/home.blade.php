@@ -64,21 +64,21 @@
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="{{ asset('assets/img/1.png') }}" class="d-block w-100" alt="img-1">
+                        <img src="{{ asset('assets/img/1.jpg') }}" class="d-block w-100" alt="img-1">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>First slide label</h5>
                           <p>Some representative placeholder content for the first slide.</p>
                         </div>
                       </div>
                       <div class="carousel-item" data-bs-interval="2000">
-                        <img src="{{ asset('assets/img/2.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('assets/img/2.jpg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Second slide label</h5>
                           <p>Some representative placeholder content for the second slide.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="{{ asset('assets/img/4.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('assets/img/1.jpg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Third slide label</h5>
                           <p>Some representative placeholder content for the third slide.</p>
@@ -99,22 +99,12 @@
             <div class="col-md-6">
                <div class="row">
                     <div class="col-md-6">
-                        {{-- <h6>Kalender:</h5>
-                        <div class="tile double double-vertical">
-                            <div class="calendar" data-role="calendar" data-start-mode="month"></div>
-                        </div>
-                        <h6>Times:</h6>
-                        <div class="card bg-success text-center d-block py-3">
-                            <div class="align-items-center">
-                                <div id="clock" class="fs-1"></div>
-                            </div>
-                        </div> --}}
                         <div class="calendar">
                             <div class="card bg-success">
                                 <div class="card-header">
-                                    <div class="row py-2">
+                                    <div class="row py-1">
                                         <div class="col-md-2 mt-3">
-                                            <i class="fas fa-angle-left"></i>
+                                            <i class="fas fa-angle-left prev"></i>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="date text-center">
@@ -123,12 +113,12 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2 mt-3">
-                                            <i class="fas fa-angle-right"></i>
+                                            <i class="fas fa-angle-right next"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body bg-dark">
-                                    <div class="weekdays mb-2" style="font-size: 12px">
+                                    <div class="weekdays mb-2" style="font-size: 11px">
                                         <div>Sun</div>
                                         <div>Mon</div>
                                         <div>Tue</div>
@@ -137,18 +127,20 @@
                                         <div>Fri</div>
                                         <div>Sat</div>
                                     </div>
-                                    <div class="days">
+                                    <div class="days mb-3">
+                                        {{-- <div class="prev-date"></div>
+                                        <div class="next-date"></div> --}}
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="day-text-formate fs-6">TODAY</div>
+                                            <div class="day-text-formate fs-5">TIME</div>
                                         </div>
                                         <div class="col-md-7">
-                                            <div class="date-time-value" style="font-size: 14px">
+                                            <div class="date-time-value" style="font-size: 15px">
                                                 {{-- <div class="time-formate">01:42:20</div> --}}
-                                                <div id="clock"></div>
+                                                <div class="mt-1" id="clock"></div>
                                                 <div class="date-formate"></div>
                                             </div>
                                             <div class="month-list"></div>
@@ -269,10 +261,10 @@
 
   {{-- GRAFIK TIAP LINGKUNGAN --}}
   <div class="modal fade" id="grafikLingkungan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Grafik Penduduk Tiap Lingkungan</h6>
+          <h6 class="modal-title" id="exampleModalLabel"><i class="fab fa-creative-commons-by"></i> Grafik Penduduk</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -426,7 +418,6 @@
             text: 'Kelurahan Teluk Mutiara'
         },
         xAxis: {
-            // categories: {!! json_encode($lingkungan) !!},
             categories: [
                 'Lingkungan 1',
                 'Lingkungan 2',
@@ -457,8 +448,7 @@
         },
         series: [{
             name: 'Jumlah',
-            // data: [13.93, 13.63, 13.73, 13.67]
-            data: {!! json_encode($lingkungan) !!}
+            data: [{{ $link1 }}, {{ $link2 }}, {{ $link3 }}, {{ $link4 }}]
         }]
     });
 </script>

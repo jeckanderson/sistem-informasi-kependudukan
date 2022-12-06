@@ -23,6 +23,8 @@ class DashboardController extends Controller
         $kematian = Kematian::all();
         $pendatang = Pendatang::all();
         $kelahiran = Kelahiran::all();
+        $link1 = Penduduk::where('jender', 'L')->count();
+        $link2 = Penduduk::where('jender', 'P')->count();
 
         return view('dashboard.index', [
             'title' => 'Dashboard',
@@ -31,6 +33,8 @@ class DashboardController extends Controller
             'kematian' => $kematian,
             'pendatang' => $pendatang,
             'kelahiran' => $kelahiran,
+            'link1' => $link1,
+            'link2' => $link2,
         ]);
     }
 }

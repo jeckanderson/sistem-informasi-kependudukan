@@ -38,6 +38,9 @@
   align-items: center;
   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0);
  }
+ .date h3{
+  text-transform: uppercase;
+ }
  .days{
   display: flex;
   width: 100%;
@@ -45,7 +48,7 @@
   padding: 0.2rem;
  }
  .days div{
-  font-size: 11px;
+  font-size: 10px;
   width: calc(14.6rem / 7);
   height: 1.7rem;
   display: flex;
@@ -67,6 +70,9 @@
  .prev-date,
  .next-date{
   opacity: 0.5;
+ }
+ .prev, .next{
+  cursor: pointer;
  }
  .today{
   background-color: #167e56;

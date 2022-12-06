@@ -24,7 +24,7 @@
                     </div>
                     <a href="/dashboard/penduduk" class="mt-2 d-block">
                         <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
+                            <span class="pull-left">view details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
@@ -47,7 +47,7 @@
                     </div>
                     <a href="/dashboard/pindah" class="mt-2 d-block">
                         <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
+                            <span class="pull-left">view details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
@@ -74,7 +74,7 @@
                     </div>
                     <a href="/dashboard/kematian" class="mt-2 d-block">
                         <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
+                            <span class="pull-left">view details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
@@ -98,7 +98,7 @@
                     </div>
                     <a href="/dashboard/pendatang" class="mt-2 d-block">
                         <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
+                            <span class="pull-left">view details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
@@ -122,7 +122,7 @@
                     </div>
                     <a href="/dashboard/kelahiran" class="mt-2 d-block">
                         <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
+                            <span class="pull-left">view details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
@@ -134,60 +134,125 @@
 
     <!-- Content Row -->
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-8">
             <div class="card mb-5">
                 <div class="card-header text-white" style="background: #495C83">
-                    <h6>Jumlah Penduduk Berdasarkan Usia</h6>
+                    <h6>Grafik Penduduk Berdasarkan Usia</h6>
                 </div>
                 <div class="card-body">
-                    <div id="grafik">
-                        
+                    <div id="grafikUsia">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="card mb-5">
                 <div class="card-header text-white" style="background: #495C83">
-                    <h6>Jumlah Penduduk Berdasarkan Jenis Kelamin</h6>
+                    <h6>Grafik Penduduk Berdasarkan Jenis Kelamin</h6>
                 </div>
                 <div class="card-body">
-                    <div id="grafik">
-                        
+                    <div id="grafikJender">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-
-    {{-- <script src="{{ asset('templates/vendor/chart.js/highcharts.js') }}"></script> --}}
-    {{-- <script type="text/javascript">
-        var pendapatan =  <?php echo json_encode($totalHarga) ?>;
-        var bulan = <?php echo json_encode($bulan) ?>;
-        Highcharts.chart('grafik', {
-            title : {
-                text: 'Pendapatan Perbulan'
-            },
-            xAxis : {
-                categories: bulan
-            },
-            yAxis : {
-               title: {
-                    text : 'Nominal Pendapatan Perbulan'
-               }
-            },
-            plotOptions: {
-                series: {
-                    allowPointSelect: true
-                }
-            },
-            series: [
-                {
-                    name: 'Nominal Pendapatan',
-                    data: pendapatan
-                }
-            ]
-        });
-    </script> --}}
 @endsection
+
+@section('footer')
+  <script src="assets/js/highcharts.js"></script>
+  <script>
+        Highcharts.chart('grafikJender', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Grafik Penduduk Berdasarkan Jenis Kelamin'
+        },
+        subtitle: {
+            text: 'Kelurahan Teluk Mutiara'
+        },
+        xAxis: {
+            categories: [
+                'Laki-Laki',
+                'Perempuan',
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            title: {
+                useHTML: true,
+                text: 'Million tonnes CO<sub>2</sub>-equivalents'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Jumlah',
+            data: [{{ $link1 }}, {{ $link2 }}]
+        }]
+    });
+</script>
+
+
+<script>
+    Highcharts.chart('grafikUsia', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Grafik Penduduk Berdasarkan Usia'
+        },
+        subtitle: {
+            text: 'Kelurahan Teluk Mutiara'
+        },
+        xAxis: {
+            categories: [
+                '0 - 1 Tahun',
+                '2 - 10 Tahun',
+                '11 - 19 Tahun',
+                '20 - 60 Tahun',
+                'Di atas 60 Tahun',
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            title: {
+                useHTML: true,
+                text: 'Million tonnes CO<sub>2</sub>-equivalents'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Jumlah',
+            data: [12.0, 12.0, 30.0, 12.0, 13.0]
+        }]
+    });
+</script>
+
+@stop
