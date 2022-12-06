@@ -1,3 +1,4 @@
+  /* LOGIN */
   .form-signin .form-floating:focus-within {
     z-index: 2;
   }
@@ -23,6 +24,50 @@
     margin-bottom: -1px;
 }
 
-.time-formate.hideTime{
-  
+
+/* KALENDER */
+ .weekdays{
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+ }
+ .weekdays div{
+  width: calc(20.2rem / 7);
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0);
+ }
+ .days{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 0.2rem;
+ }
+ .days div{
+  font-size: 11px;
+  width: calc(14.6rem / 7);
+  height: 1.7rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  transition: background-color 0.2s;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  -ms-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
 }
+ .days div:hover:not(.today) {
+  background-color: #262626;
+  border: 0.2rem solid #777;
+  cursor: pointer;
+ }
+ .prev-date,
+ .next-date{
+  opacity: 0.5;
+ }
+ .today{
+  background-color: #167e56;
+ }

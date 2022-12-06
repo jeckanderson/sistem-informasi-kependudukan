@@ -64,21 +64,21 @@
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="{{ asset('assets/img/1.jpg') }}" class="d-block w-100" alt="img-1">
+                        <img src="{{ asset('assets/img/1.png') }}" class="d-block w-100" alt="img-1">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>First slide label</h5>
                           <p>Some representative placeholder content for the first slide.</p>
                         </div>
                       </div>
                       <div class="carousel-item" data-bs-interval="2000">
-                        <img src="{{ asset('assets/img/2.jpg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('assets/img/2.png') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Second slide label</h5>
                           <p>Some representative placeholder content for the second slide.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="{{ asset('assets/img/3.jpg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('assets/img/4.png') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Third slide label</h5>
                           <p>Some representative placeholder content for the third slide.</p>
@@ -109,49 +109,50 @@
                                 <div id="clock" class="fs-1"></div>
                             </div>
                         </div> --}}
-                        <div class="card bg-success">
-                            <div class="card-header" style="background: #9796f0">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <span class="month-picker" id="month-picker"> May </span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="year-picker d-flex" id="year-picker">
-                                            <span class="year-change px-1" id="pre-year">
-                                                <div><i class="fas fa-angle-double-left"></i></div>
-                                            </span>
-                                            <span id="year">2022</span>
-                                            <span class="year-change px-1" id="next-year">
-                                                <div><i class="fas fa-angle-double-right"></i></div>
-                                            </span>
+                        <div class="calendar">
+                            <div class="card bg-success">
+                                <div class="card-header">
+                                    <div class="row py-2">
+                                        <div class="col-md-2 mt-3">
+                                            <i class="fas fa-angle-left"></i>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="date text-center">
+                                                <h3 class=""></h3>
+                                                <p style="font-size: 12px;"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 mt-3">
+                                            <i class="fas fa-angle-right"></i>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="calender-week-days d-flex">
-                                    <div>Sun</div>
-                                    <div>Mon</div>
-                                    <div>Tue</div>
-                                    <div>Wend</div>
-                                    <div>Thu</div>
-                                    <div>Fri</div>
-                                    <div>Sat</div>
-                                </div>
-                                <div class="calendar-days"></div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="day-text-formate fs-5">TODAY</div>
+                                <div class="card-body bg-dark">
+                                    <div class="weekdays mb-2" style="font-size: 12px">
+                                        <div>Sun</div>
+                                        <div>Mon</div>
+                                        <div>Tue</div>
+                                        <div>Wed</div>
+                                        <div>Thu</div>
+                                        <div>Fri</div>
+                                        <div>Sat</div>
                                     </div>
-                                    <div class="col-md-7">
-                                        <div class="date-time-value" style="font-size: 14px">
-                                            {{-- <div class="time-formate">01:42:20</div> --}}
-                                            <div id="clock"></div>
-                                            <div class="date-formate">{{ date("d F Y", strtotime(gmdate('d-m-Y'))) }}</div>
+                                    <div class="days">
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="day-text-formate fs-6">TODAY</div>
                                         </div>
-                                        <div class="month-list"></div>
+                                        <div class="col-md-7">
+                                            <div class="date-time-value" style="font-size: 14px">
+                                                {{-- <div class="time-formate">01:42:20</div> --}}
+                                                <div id="clock"></div>
+                                                <div class="date-formate"></div>
+                                            </div>
+                                            <div class="month-list"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +185,7 @@
                                     {{-- <i class="fas fa-sign-in-alt text-white py-2 mb-3" style="font-size: 40px"></i> --}}
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="bg-danger p-1 px-3 rounded-bottom">Welcome {{ auth()->user()->name }}</span>
+                                        <span class="bg-danger p-1 px-3 rounded-bottom">welcome {{ auth()->user()->name }}</span>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             @if (auth()->user()->is_admin == 1)
@@ -213,7 +214,6 @@
                                 </a>
                             @endauth
                         </div>
-                        
                     </div>
                </div>
             </div>
@@ -260,7 +260,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date("d F Y", strtotime(gmdate('d-m-Y'))) }}</p>
         </div>
       </div>
     </div>
@@ -282,7 +282,7 @@
 
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date("d F Y", strtotime(gmdate('d-m-Y'))) }}</p>
         </div>
       </div>
     </div>
@@ -327,7 +327,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date("d F Y", strtotime(gmdate('d-m-Y'))) }}</p>
         </div>
       </div>
     </div>
@@ -370,7 +370,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date("d F Y", strtotime(gmdate('d-m-Y'))) }}</p>
         </div>
       </div>
     </div>
@@ -404,14 +404,13 @@
             </div>
         </div>
         <div class="modal-footer">
-            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date('j-n-Y') }}</p>
+            <p style="font-size: 13px">Kelurahan Teluk Mutiara, {{ date("d F Y", strtotime(gmdate('d-m-Y'))) }}</p>
         </div>
       </div>
     </div>
   </div>
 
 @endsection
-
 
 @section('footer')
   <script src="assets/js/highcharts.js"></script>
